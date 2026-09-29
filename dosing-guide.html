@@ -1,0 +1,1585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peppertidez Master Dosing Guide</title>
+<style>
+  body { margin: 0; padding: 20px; background: #0a0a0f; font-family: 'Courier New', monospace; color: #e0e0e0; }
+  .email-wrap { max-width: 680px; margin: 0 auto; background: #0d0d1a; border: 1px solid #1e1e3a; border-radius: 10px; overflow: hidden; }
+  .header { background: linear-gradient(135deg, #0d0d1a 0%, #1a0a2e 100%); padding: 36px 32px 24px; border-bottom: 2px solid #00e5ff; text-align: center; }
+  .logo { font-size: 28px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; background: linear-gradient(180deg, #ffffff 0%, #a8a8a8 50%, #d4d4d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .logo span { background: none; -webkit-text-fill-color: unset; color: inherit; }
+  .tagline { font-size: 11px; color: #ffffff; letter-spacing: 4px; margin-top: 6px; text-transform: uppercase; }
+  .hero-banner { background: linear-gradient(90deg, #00e5ff11, #7b2ff711, #00e5ff11); border-top: 1px solid #00e5ff33; border-bottom: 1px solid #00e5ff33; padding: 18px 32px; text-align: center; }
+  .hero-title { font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 2px; text-transform: uppercase; margin: 0; }
+  .hero-sub { font-size: 12px; color: #7b7baa; margin-top: 6px; letter-spacing: 1px; }
+  .ruo-banner { background: #0d0d1a; border-top: 1px solid #1e1e3a; border-bottom: 1px solid #1e1e3a; padding: 12px 32px; text-align: center; font-size: 12px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: #7b7baa; }
+  .body-wrap { padding: 28px 32px; }
+  .intro { font-size: 13px; color: #a0a0c0; line-height: 1.7; margin-bottom: 28px; padding-bottom: 20px; border-bottom: 1px solid #1e1e3a; }
+  .category-header { margin: 32px 0 16px; }
+  .category-label { display: block; font-size: 15px; font-weight: 900; letter-spacing: 3px; text-transform: uppercase; color: #00e5ff; background: #00e5ff12; border: 1px solid #00e5ff33; border-radius: 6px; padding: 10px 16px; text-align: center; }
+  .category-line { display: none; }
+  .peptide-block { background: #111127; border: 1px solid #1e1e3a; border-left: 3px solid #00e5ff; border-radius: 6px; margin-bottom: 20px; overflow: hidden; }
+  .peptide-block.gold { border-left-color: #ffd700; }
+  .peptide-block.purple { border-left-color: #a855f7; }
+  .peptide-block.green { border-left-color: #22c55e; }
+  .peptide-block.orange { border-left-color: #f97316; }
+  .peptide-block.pink { border-left-color: #ec4899; }
+  .peptide-block.recovery { border-left: 5px solid #7b2ff7; position: relative; overflow: visible; }
+  .peptide-block.recovery::after { content: ''; position: absolute; top: 0; left: -5px; width: 5px; height: 100%; background: linear-gradient(180deg, #7b2ff7 0%, #00e5ff 100%); }
+  .peptide-block.gh { border-left: 5px solid #cc0000; position: relative; overflow: visible; }
+  .peptide-block.gh::after { content: ''; position: absolute; top: 0; left: -5px; width: 5px; height: 100%; background: linear-gradient(180deg, #cc0000 0%, #ff8c00 100%); }
+  .peptide-block.met { border-left: 5px solid #7dd8f0; position: relative; overflow: visible; }
+  .peptide-block.met::after { content: ''; position: absolute; top: 0; left: -5px; width: 5px; height: 100%; background: linear-gradient(180deg, #7dd8f0 0%, #ffffff 100%); }
+  .peptide-block.neuro { border-left: 5px solid #0d3d1a; position: relative; overflow: visible; }
+  .peptide-block.neuro::after { content: ''; position: absolute; top: 0; left: -5px; width: 5px; height: 100%; background: linear-gradient(180deg, #0d3d1a 0%, #4ade80 100%); }
+  .peptide-block.libido { border-left: 5px solid #7b2ff7; position: relative; overflow: visible; }
+  .peptide-block.libido::after { content: ''; position: absolute; top: 0; left: -5px; width: 5px; height: 100%; background: linear-gradient(180deg, #7b2ff7 0%, #cc0000 100%); }
+  .peptide-block.mt2grad { border-left: 5px solid #b8860b; position: relative; overflow: visible; }
+  .peptide-block.mt2grad::after { content: ''; position: absolute; top: 0; left: -5px; width: 5px; height: 100%; background: linear-gradient(180deg, #b8860b 0%, #ffd700 100%); }
+  .peptide-header { padding: 14px 18px 10px; background: #0d0d20; display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .peptide-name { font-size: 15px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+  .peptide-aka { font-size: 10px; color: #7b7baa; letter-spacing: 1px; }
+  .vial-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; padding: 0 18px 10px; }
+  .vial-tag { font-size: 10px; padding: 3px 8px; border-radius: 3px; background: #00e5ff15; border: 1px solid #00e5ff44; color: #00e5ff; letter-spacing: 1px; }
+  .vial-tag.gold { background: #ffd70015; border-color: #ffd70044; color: #ffd700; }
+  .vial-tag.purple { background: #a855f715; border-color: #a855f744; color: #a855f7; }
+  .vial-tag.green { background: #22c55e15; border-color: #22c55e44; color: #22c55e; }
+  .vial-tag.orange { background: #f9731615; border-color: #f9731644; color: #f97316; }
+  .vial-tag.pink { background: #ec489915; border-color: #ec489944; color: #ec4899; }
+  .peptide-body { padding: 12px 18px 16px; }
+  .section-title { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #7b7baa; margin: 14px 0 6px; }
+  .recon-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 4px; }
+  .recon-table th { text-align: left; color: #7b7baa; font-size: 10px; letter-spacing: 2px; padding: 4px 8px; border-bottom: 1px solid #1e1e3a; font-weight: 400; }
+  .recon-table td { padding: 5px 8px; color: #c0c0d8; border-bottom: 1px solid #1a1a2e; font-size: 11px; }
+  .recon-table tr:last-child td { border-bottom: none; }
+  .recon-table .hi { color: #fff; }
+  .schedule-box { background: #0a0a18; border: 1px solid #1e1e3a; border-radius: 4px; padding: 10px 14px; margin-top: 6px; font-size: 12px; color: #c0c0d8; line-height: 1.8; }
+  .schedule-box strong { color: #00e5ff; }
+  .schedule-box.gold strong { color: #ffd700; }
+  .schedule-box.purple strong { color: #a855f7; }
+  .schedule-box.green strong { color: #22c55e; }
+  .schedule-box.orange strong { color: #f97316; }
+  .schedule-box.pink strong { color: #ec4899; }
+  .calc-cta { margin-top: 10px; }
+  .calc-cta a { display: inline-block; background: linear-gradient(135deg, #00e5ff, #0099bb); color: #000; text-decoration: none; font-weight: 800; font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; padding: 10px 20px; border-radius: 5px; text-align: center; width: 100%; box-sizing: border-box; }
+  .calc-cta a:hover { background: linear-gradient(135deg, #33eeff, #00bbdd); }
+  .tip-box { background: #1a1a0a; border: 1px solid #ffd70033; border-radius: 4px; padding: 8px 14px; margin-top: 10px; font-size: 11px; color: #c0c0a0; line-height: 1.6; }
+  .tip-box::before { content: '💡 TIP: '; color: #ffd700; font-weight: 700; font-size: 10px; letter-spacing: 1px; }
+  .inject-section { background: #0d0d20; border-top: 1px solid #1e1e3a; padding: 20px 32px; margin: 0 -0px; }
+  .inject-title { font-size: 10px; font-weight: 700; letter-spacing: 4px; color: #00e5ff; text-transform: uppercase; margin-bottom: 12px; }
+  .inject-steps { font-size: 12px; color: #c0c0d8; line-height: 2; counter-reset: steps; padding: 0; margin: 0; list-style: none; }
+  .inject-steps li { display: flex; gap: 10px; }
+  .inject-steps li::before { content: counter(steps); counter-increment: steps; display: inline-flex; align-items: center; justify-content: center; min-width: 20px; height: 20px; background: #00e5ff22; border: 1px solid #00e5ff44; border-radius: 3px; color: #00e5ff; font-size: 10px; font-weight: 700; margin-top: 2px; }
+  .disclaimer { background: #1a1206; border-top: 2px solid #ffd700; border-bottom: 1px solid #ffd70055; padding: 22px 32px; font-size: 12.5px; font-weight: 700; color: #ffd700; line-height: 1.8; text-align: center; letter-spacing: .3px; }
+  .footer { background: #080810; border-top: 1px solid #1e1e3a; padding: 20px 32px; text-align: center; }
+  .footer-brand { font-size: 14px; font-weight: 700; color: #00e5ff; letter-spacing: 2px; }
+  .footer-link { font-size: 11px; color: #4a4a6a; margin-top: 6px; }
+  .footer-link a { color: #7b7baa; text-decoration: none; }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, #1e1e3a, transparent); margin: 6px 0; }
+</style>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#04070f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌶️</text></svg>">
+<style>
+  .ptzgh-ruo{background:linear-gradient(90deg,rgba(0,220,255,.12),rgba(176,111,255,.12));border-bottom:1px solid rgba(255,255,255,.08);font:12px/1.4 'Outfit',system-ui,-apple-system,Segoe UI,sans-serif;letter-spacing:.02em;text-align:center;color:#8A93AD;padding:8px 16px;position:relative;z-index:2;margin:-20px -20px 16px}
+  .ptzgh-back{max-width:680px;margin:0 auto;padding:0 0 12px;position:relative;z-index:2}
+  .ptzgh-back a{display:inline-flex;align-items:center;gap:6px;font:500 14px/1 'Outfit',system-ui,-apple-system,Segoe UI,sans-serif;color:#8A93AD;text-decoration:none;padding:6px 0}
+  .ptzgh-back a:hover{color:#00DCFF}
+</style>
+</head>
+<body>
+<div class="ptzgh-ruo">For laboratory and research use only. Not for human consumption.</div>
+<nav class="ptzgh-back"><a href="./"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>All resources</a></nav>
+
+<div class="email-wrap">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="logo">PEPPERTIDEZ</div>
+    <div class="tagline">Advanced Research Compounds</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero-banner">
+    <div class="hero-title">🌶️ Your Complete Dosing Guide</div>
+    <div class="hero-sub">Reconstitution · Calculator Instructions · Schedule · Injection Protocol</div>
+  </div>
+
+  <!-- RUO BANNER -->
+  <div class="ruo-banner">For Research Purposes Only — Not for Human or Veterinary Use</div>
+
+  <!-- BODY -->
+  <div class="body-wrap">
+
+    <div class="intro">
+      Below is your complete dosing guide for every peptide. Each section covers how to reconstitute your vial, your optimal dosing schedule, and when to inject. Vials per Cycle is an estimate for a full-length cycle at the optimal dose — round up and keep a spare on hand.<br><br>
+      <a href="calculator.html" style="display:inline-block;background:linear-gradient(135deg,#00e5ff,#0099bb);color:#000;text-decoration:none;font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:12px 24px;border-radius:5px;text-align:center;width:100%;box-sizing:border-box;">🧬 Use Our Dosage Calculator</a>
+    </div>
+
+    
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CATEGORY: RECOVERY & HEALING -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="category-header">
+      <div class="category-label">🩹 Recovery &amp; Healing</div>
+      <div class="category-line"></div>
+    </div>
+
+    <!-- BPC-157 -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">BPC-157</div>
+          <div class="peptide-aka">Body Protection Compound · Gut &amp; Tissue Repair</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box">
+          <strong>Optimal Dose:</strong> 600 mcg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Cycle:</strong> 4–12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈6 vials (max cycle)<br>
+          <strong>Tip:</strong> Works best stacked with TB-500 for tissue repair
+        </div>
+      </div>
+    </div>
+
+    <!-- TB-500 -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">TB-500</div>
+          <div class="peptide-aka">Thymosin Beta-4 · Muscle &amp; Tendon Repair</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box">
+          <strong>Optimal Dose:</strong> 1 mg<br>
+          <strong>Frequency:</strong> 3x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 4–6 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈4 vials (max cycle)<br>
+          <strong>Tip:</strong> Inject day after hard workouts for max recovery benefit.
+        </div>
+      </div>
+    </div>
+
+    <!-- Wolverine Blend -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Wolverine</div>
+          <div class="peptide-aka">BPC-157 + TB-500 Blend · Rapid Repair Stack</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag">10mg vial</span>
+        <span class="vial-tag">20mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+          <tr><td class="hi">20mg</td><td>2 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box">
+          <strong>Optimal Dose:</strong> 1 mg<br>
+          <strong>Frequency:</strong> 5–7x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning or evening<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈9 × 10mg or 5 × 20mg (max cycle)<br>
+          <strong>Tip:</strong> BPC-157 and TB-500 in one vial — the classic repair stack without double the pins
+        </div>
+      </div>
+    </div>
+
+    <!-- GHK-Cu -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">GHK-Cu</div>
+          <div class="peptide-aka">Copper Peptide · Anti-Aging · Collagen · Skin &amp; Recovery</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag green">50mg vial</span>
+        <span class="vial-tag green">100mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">50mg</td><td>1.5 mL</td></tr>
+          <tr><td class="hi">100mg</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box green">
+          <strong>Optimal Dose:</strong> 2 mg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Evening preferred<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈4 × 50mg or 2 × 100mg (max cycle)<br>
+          <strong>Tip:</strong> Pairs great with BPC-157 and TB-500 for skin and tissue regeneration
+        </div>
+      </div>
+    </div>
+
+    <!-- AHK-Cu -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">AHK-Cu</div>
+          <div class="peptide-aka">Copper Tripeptide · Hair Growth · Scalp Health</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag green">50mg vial</span>
+        <span class="vial-tag green">100mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">50mg</td><td>1.5 mL</td></tr>
+          <tr><td class="hi">100mg</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box green">
+          <strong>Optimal Dose:</strong> 2 mg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning or evening<br>
+          <strong>Cycle:</strong> 8–16 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈5 × 50mg or 3 × 100mg (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- SNAP-8 -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">SNAP-8</div>
+          <div class="peptide-aka">Acetyl Octapeptide-3 · Anti-Wrinkle · Expression Lines</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag green">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box green">
+          <strong>Loading Phase:</strong> 330 mcg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 1 mg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Intradermal — dermaroller or stamp only<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 2–4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈9 vials (max cycle)<br>
+          <strong>⚠️ Note:</strong> Start low to assess local response and titrate up only if well tolerated. For localized facial or superficial muscle areas via dermaroller or stamp — not intended to act systemically.
+        </div>
+      </div>
+    </div>
+
+    <!-- KPV -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">KPV</div>
+          <div class="peptide-aka">Anti-Inflammatory Tripeptide · Gut Healing · Immune</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box">
+          <strong>Optimal Dose:</strong> 500 mcg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Cycle:</strong> 4–8 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈3 vials (max cycle)<br>
+          <strong>Tip:</strong> Great stacked in KLOW blend for complete healing
+        </div>
+      </div>
+    </div>
+
+    <!-- ARA-290 -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">ARA-290</div>
+          <div class="peptide-aka">Cibinetide · EPO-Derived Peptide · Nerve Repair · Anti-Inflammatory</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag">16mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">16mg</td><td>2 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box">
+          <strong>Loading Phase:</strong> 2 mg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 4 mg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Cycle:</strong> 12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈21 vials (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- TA-1 -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">TA-1</div>
+          <div class="peptide-aka">Thymosin Alpha-1 · Immune Modulation · Resilience</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box">
+          <strong>Optimal Dose:</strong> 500 mcg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning or evening<br>
+          <strong>Cycle:</strong> 8–16 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈6 vials (max cycle)<br>
+          <strong>Tip:</strong> Pairs well with KPV for a combined immune and anti-inflammatory protocol
+        </div>
+      </div>
+    </div>
+
+    <!-- Cartalax -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Cartalax</div>
+          <div class="peptide-aka">Bioregulator Peptide · Vascular &amp; Connective Tissue Support</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag">20mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">20mg</td><td>2 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box">
+          <strong>Loading Phase:</strong> 2 mg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 5 mg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning or evening<br>
+          <strong>Cycle:</strong> 8–16 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈28 vials (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- GLOW Blend -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">GLOW</div>
+          <div class="peptide-aka">BPC-157 + TB-500 + GHK-Cu Blend · Full Recovery Stack</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag green">70mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">70mg</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box green">
+          <strong>Optimal Dose:</strong> 2.5 mg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning or evening<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈3 vials (max cycle)<br>
+          <strong>Tip:</strong> The full recovery trifecta — tissue repair, collagen, and anti-aging all in one vial
+        </div>
+      </div>
+    </div>
+
+    <!-- KLOW Blend -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">KLOW</div>
+          <div class="peptide-aka">BPC-157 + TB-500 + KPV + GHK-Cu · Ultimate Healing Blend</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag green">80mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">80mg</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box green">
+          <strong>Optimal Dose:</strong> 4 mg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning or evening<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈5 vials (max cycle)<br>
+          <strong>Tip:</strong> The most comprehensive healing blend — 4 peptides hitting repair, inflammation, collagen, and immune support simultaneously
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Apollo Blend -->
+    <div class="peptide-block recovery">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Apollo</div>
+          <div class="peptide-aka">GHK-Cu + KPV Blend · Skin, Gut &amp; Anti-Inflammatory Repair</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag green">60mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">60mg (50mg GHK-Cu / 10mg KPV)</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box green">
+          <strong>Optimal Dose:</strong> 2.5 mg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning or evening<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈4 vials (max cycle)<br>
+          <strong>Tip:</strong> Copper-peptide repair plus KPV anti-inflammatory in one vial — skin, gut, and immune support together
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CATEGORY: GROWTH HORMONE -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="category-header">
+      <div class="category-label">💪 Growth Hormone</div>
+      <div class="category-line"></div>
+    </div>
+
+    <!-- CJC-1295 W/O DAC -->
+    <div class="peptide-block gh">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">CJC-1295 W/O DAC</div>
+          <div class="peptide-aka">GHRH Analog · GH Pulse Stimulator · Lean Muscle &amp; Fat Loss</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Optimal Dose:</strong> 300 mcg<br>
+          <strong>Frequency:</strong> 2x daily 5-7x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning (fasted) and before bed (empty stomach)<br>
+          <strong>Cycle:</strong> 12–16 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈7 vials (max cycle)<br>
+          <strong>Tip:</strong> Stack with Ipamorelin for synergistic GH release — inject both at the same time
+        </div>
+      </div>
+    </div>
+
+    <!-- Ipamorelin -->
+    <div class="peptide-block gh">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Ipamorelin</div>
+          <div class="peptide-aka">Selective GHRP · GH Secretagogue · Recovery &amp; Anti-Aging</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Optimal Dose:</strong> 250 mcg<br>
+          <strong>Frequency:</strong> 2x daily 5-7x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning (fasted) and before bed (empty stomach)<br>
+          <strong>Cycle:</strong> 12–16 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈6 vials (max cycle)<br>
+          <strong>Tip:</strong> Best paired with CJC-1295 W/O DAC — inject in same syringe or back-to-back
+        </div>
+      </div>
+    </div>
+
+    <!-- CJC/Ipa Blend -->
+    <div class="peptide-block gh">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">CJC/Ipa Blend</div>
+          <div class="peptide-aka">CJC-1295 W/O DAC + Ipamorelin · Synergistic GH Release in One Vial</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">20mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">20mg</td><td>2 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Optimal Dose:</strong> 500 mcg<br>
+          <strong>Frequency:</strong> 2x daily 5-7x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning (fasted) and before bed (empty stomach)<br>
+          <strong>Cycle:</strong> 12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈5 vials (max cycle)<br>
+          <strong>Tip:</strong> Both GH peptides pre-blended in one vial — the classic CJC + Ipa stack without drawing from two vials
+        </div>
+      </div>
+    </div>
+
+    <!-- Tesamorelin -->
+    <div class="peptide-block gh">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Tesamorelin</div>
+          <div class="peptide-aka">GHRH Analog · Visceral Fat Reduction · GH Stimulator</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">10mg vial</span>
+        <span class="vial-tag orange">20mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+          <tr><td class="hi">20mg</td><td>2 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Optimal Dose:</strong> 2 mg<br>
+          <strong>Frequency:</strong> 5–7x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Before bed on an empty stomach<br>
+          <strong>Cycle:</strong> 12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈17 × 10mg or 9 × 20mg (max cycle)<br>
+          <strong>Tip:</strong> Stack with Ipamorelin for enhanced GH release and body recomposition
+        </div>
+      </div>
+    </div>
+
+    <!-- HGH -->
+    <div class="peptide-block gh">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">HGH</div>
+          <div class="peptide-aka">Human Growth Hormone 191aa · Somatropin</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag gold">24 IU vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">24 IU</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box gold">
+          <strong>Optimal Dose:</strong> 4 IU<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning fasted OR before bed 2+ hrs after last meal<br>
+          <strong>Cycle:</strong> 12–16 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈19 vials (max cycle)<br>
+          <strong>⚠️ Monitor:</strong> Fasting glucose weekly at doses ≥2 IU/day
+        </div>
+        <div class="tip-box">HGH is more temperature sensitive than other peptides. Do NOT leave reconstituted vial at room temperature for more than 30 minutes. Always store refrigerated.</div>
+      </div>
+    </div>
+
+    <!-- IGF-1 LR3 -->
+    <div class="peptide-block gh">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">IGF-1 LR3</div>
+          <div class="peptide-aka">Insulin-Like Growth Factor · Muscle Growth · Fat Loss</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">1mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">1mg (1,000 mcg)</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Loading Phase:</strong> 20 mcg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 50–70 mcg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous or intramuscular<br>
+          <strong>Timing:</strong> Immediately after training<br>
+          <strong>Cycle:</strong> 8 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈4 vials (max cycle)<br>
+          <strong>⚠️ Note:</strong> Take with a small carb snack post-injection to prevent hypoglycemia<br>
+         Begin at a lower amount to let the body adjust to the compound before working up to the optimal range.
+        </div>
+      </div>
+    </div>
+
+    <!-- HCG -->
+    <div class="peptide-block gh">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">HCG</div>
+          <div class="peptide-aka">Human Chorionic Gonadotropin · Hormonal Balance · Endocrine Support</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">5,000 IU vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">5,000 IU</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Optimal Dose:</strong> 500 IU<br>
+          <strong>Frequency:</strong> 3x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Cycle:</strong> 12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈4 vials (max cycle)<br>
+          <strong>Tip:</strong> Commonly used to restore natural testosterone production and maintain fertility during or after hormone protocols
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CATEGORY: METABOLIC / WEIGHT -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="category-header">
+      <div class="category-label">⚡ Metabolic &amp; Weight Management</div>
+      <div class="category-line"></div>
+    </div>
+
+    <!-- GLP-1 Sema -->
+    <div class="peptide-block met">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">GLP-1 Sema</div>
+          <div class="peptide-aka">Semaglutide · GLP-1 Receptor Agonist · Weight Loss</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">10mg vial</span>
+        <span class="vial-tag orange">20mg vial</span>
+        <span class="vial-tag orange">30mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+          <tr><td class="hi">20mg</td><td>2 mL</td></tr>
+          <tr><td class="hi">30mg</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Week 1–4:</strong> 0.25 mg<br>
+          <strong>Week 5–8:</strong> 0.5 mg<br>
+          <strong>Week 9–12:</strong> 1 mg<br>
+          <strong>Week 13+:</strong> 1.7–2.4 mg (max)<br>
+          <strong>Frequency:</strong> Weekly<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Tip:</strong> Same day every week. Start low to minimize nausea.<br>
+          <strong>⚠️ Note:</strong> Only titrate up to a doseage that provides adequate appetite suppression.
+        </div>
+      </div>
+    </div>
+
+    <!-- GLP-3 RT (Retatrutide) -->
+    <div class="peptide-block met">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">GLP-3 RT</div>
+          <div class="peptide-aka">Retatrutide · Triple Agonist GLP-1/GIP/GCG · Next-Gen Weight Loss</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">10mg vial</span>
+        <span class="vial-tag orange">20mg vial</span>
+        <span class="vial-tag orange">30mg vial</span>
+        <span class="vial-tag orange">60mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+          <tr><td class="hi">20mg</td><td>2 mL</td></tr>
+          <tr><td class="hi">30mg</td><td>3 mL</td></tr>
+          <tr><td class="hi">60mg</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Starting Dose:</strong> 0.5–1 mg<br>
+          <strong>Titrate:</strong> Increase by 0.5 mg each step as tolerated<br>
+          <strong>Max Dose:</strong> 12 mg<br>
+          <strong>Frequency:</strong> Weekly<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Tip:</strong> Titrate slowly to manage GI side effects<br>
+          <strong>⚠️ Note:</strong> Only titrate up to a doseage that provides adequate appetite suppression.
+        </div>
+      </div>
+    </div>
+
+    <!-- TZ-2 Tirz -->
+    <div class="peptide-block met">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">TZ-2 (Tirz)</div>
+          <div class="peptide-aka">Tirzepatide · Dual GLP-1/GIP Agonist · Weight &amp; Blood Sugar</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">10mg vial</span>
+        <span class="vial-tag orange">20mg vial</span>
+        <span class="vial-tag orange">30mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+          <tr><td class="hi">20mg</td><td>2 mL</td></tr>
+          <tr><td class="hi">30mg</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Week 1–4:</strong> 2.5 mg<br>
+          <strong>Week 5–8:</strong> 5 mg<br>
+          <strong>Week 9–12:</strong> 7.5 mg<br>
+          <strong>Week 13–16:</strong> 10 mg<br>
+          <strong>Week 17+:</strong> 12.5–15 mg (max)<br>
+          <strong>Frequency:</strong> Weekly<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>⚠️ Note:</strong> Only titrate up to a doseage that provides adequate appetite suppression.
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Eloralintide -->
+    <div class="peptide-block met">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Eloralintide</div>
+          <div class="peptide-aka">Amylin Receptor Agonist · Appetite Control · Weight Management</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Week 1–4:</strong> 1 mg<br>
+          <strong>Week 5–8:</strong> 3 mg<br>
+          <strong>Week 9–12:</strong> 6 mg<br>
+          <strong>Week 13+:</strong> 9 mg (max)<br>
+          <strong>Frequency:</strong> Weekly<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Tip:</strong> Titrate slowly to manage GI side effects<br>
+          <strong>⚠️ Note:</strong> Only titrate up to a doseage that provides adequate appetite suppression.
+        </div>
+      </div>
+    </div>
+
+    <!-- Cagrilintide -->
+    <div class="peptide-block met">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Cagrilintide</div>
+          <div class="peptide-aka">Amylin Analog · Appetite Control · Weight Management</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Loading Phase:</strong> 250 mcg — titrate up gradually<br>
+          <strong>Max Dose:</strong> 2.4 mg<br>
+          <strong>Frequency:</strong> Weekly<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Tip:</strong> Same day every week. Often stacked with GLP-1s for enhanced appetite control.<br>
+          <strong>⚠️ Note:</strong> Only titrate up to a doseage that provides adequate appetite suppression.
+        </div>
+      </div>
+    </div>
+
+
+    <!-- 5-Amino -->
+    <div class="peptide-block met">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">5-Amino</div>
+          <div class="peptide-aka">5-Amino-1MQ · NAD+ Booster · Fat Cell Inhibitor</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">10mg vial</span>
+        <span class="vial-tag orange">50mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+          <tr><td class="hi">50mg</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Optimal Dose:</strong> 5 mg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning — pairs well with MOTS-c and NAD+<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈42 × 10mg or 9 × 50mg (max cycle)
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- AOD-9604 -->
+    <div class="peptide-block met">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">AOD-9604</div>
+          <div class="peptide-aka">GH Fragment 176-191 Analog · Fat Metabolism · Weight Management</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Loading Phase:</strong> 250 mcg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 500 mcg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Cycle:</strong> 12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈5 vials (max cycle)
+        </div>
+      </div>
+    </div>
+
+
+
+    <!-- Lipo-C w/B12 -->
+    <div class="peptide-block met">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Lipo-C w/B12</div>
+          <div class="peptide-aka">Lipotropic Blend + Vitamin B12 · Fat Metabolism · Energy</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">Pre-mixed liquid vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — No Reconstitution Needed</div>
+        <div class="schedule-box orange">
+          <strong>This comes pre-mixed — do NOT add BAC water.</strong><br>
+          Draw directly from vial per the dose below.
+        </div>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Loading Phase:</strong> 0.25 mL — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 1 mL<br>
+          <strong>Frequency:</strong> 3x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning before meals for best fat-burning effect<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off
+        </div>
+      </div>
+    </div>
+
+    <!-- L-Carnitine -->
+    <div class="peptide-block met">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">L-Carnitine</div>
+          <div class="peptide-aka">Amino Acid Derivative · Fat Transport · Energy Metabolism</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">600mg/mL pre-mixed vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — No Reconstitution Needed</div>
+        <div class="schedule-box orange">
+          <strong>This comes pre-mixed — do NOT add BAC water.</strong><br>
+          Draw directly from vial per the dose below.
+        </div>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Loading Phase:</strong> 200 mg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 600 mg<br>
+          <strong>Frequency:</strong> 3–5x per week<br>
+          <strong>Inject:</strong> Intramuscular<br>
+          <strong>Cycle:</strong> 12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈6 vials (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- Lemon Bottle -->
+    <div class="peptide-block met">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Lemon Bottle</div>
+          <div class="peptide-aka">Fat-Dissolving Solution · Lipolysis · Body &amp; Facial Contouring</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">Pre-mixed liquid vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — No Reconstitution Needed</div>
+        <div class="schedule-box orange">
+          <strong>This comes pre-mixed — do NOT add BAC water.</strong><br>
+          Draw directly from vial per the dose below.
+        </div>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Face Dose:</strong> Chin 0.2–0.3 mL per injection point — not exceeding 15 mL per session<br>
+          <strong>Body Dose:</strong> 1–3 mL per site — arms 10–15 mL each · hips or flanks 15–25 mL per side · thighs 10–20 mL each · abdomen 30–40 mL for full belly<br>
+          <strong>Face Frequency:</strong> Sessions spaced 2–4 weeks apart for subtle contour improvements, avoiding excessive swelling and ensuring the natural fat dissolution process<br>
+          <strong>Body Frequency:</strong> Sessions can be spaced 7–10 days apart if more aggressive treatment is needed, depending on response<br>
+          <strong>Inject:</strong> Subcutaneous — targeted area<br>
+          <strong>⚠️ Note:</strong> 1 bottle is 10 mL
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CATEGORY: NEURO / COGNITIVE -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="category-header">
+      <div class="category-label">🧠 Neuro &amp; Cognitive</div>
+      <div class="category-line"></div>
+    </div>
+
+    <!-- MOTS-c -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">MOTS-c</div>
+          <div class="peptide-aka">Mitochondrial Peptide · Energy · Metabolism · Insulin Sensitivity</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag orange">10mg vial</span>
+        <span class="vial-tag orange">40mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+          <tr><td class="hi">40mg</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box orange">
+          <strong>Optimal Dose:</strong> 2–5 mg<br>
+          <strong>Frequency:</strong> 5-7x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning before exercise for best metabolic effect<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈42 × 10mg or 11 × 40mg (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- NAD+ -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">NAD+</div>
+          <div class="peptide-aka">Nicotinamide Adenine Dinucleotide · Energy · Anti-Aging · DNA Repair</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag gold">1000mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">1000mg</td><td>5–7.5 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box gold">
+          <strong>Loading Phase:</strong> 25 mg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 100 mg<br>
+          <strong>Frequency:</strong> 3x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning — inject slowly<br>
+          <strong>⚠️ Note:</strong> Subcutaneous can cause flushing at higher doses — normal reaction
+        </div>
+      </div>
+    </div>
+
+    <!-- Glutathione -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Glutathione</div>
+          <div class="peptide-aka">Master Antioxidant · Liver Detox · Skin Brightening · Immune</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag gold">1500mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">1500mg</td><td>5–7.5 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box gold">
+          <strong>Loading Phase:</strong> 100 mg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 600 mg<br>
+          <strong>Frequency:</strong> 3x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Any time of day<br>
+          <strong>Tip:</strong> For skin brightening results, consistent use for 8+ weeks is key. Titrate up slowly and assess tolerance before increasing dose.
+        </div>
+      </div>
+    </div>
+
+    <!-- SS-31 -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">SS-31</div>
+          <div class="peptide-aka">Elamipretide · Mitochondrial Protector · Cellular Energy</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag pink">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box pink">
+          <strong>Optimal Dose:</strong> 10 mg<br>
+          <strong>Frequency:</strong> 5–7x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈84 vials (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- Semax -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Semax</div>
+          <div class="peptide-aka">ACTH Analog · BDNF Booster · Focus · Neuroprotection</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag pink">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box pink">
+          <strong>Optimal Dose:</strong> 800 mcg<br>
+          <strong>Frequency:</strong> 5-7x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning<br>
+          <strong>Cycle:</strong> 8 weeks on / 8 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈5 vials (max cycle)<br>
+          <strong>Tip:</strong> Great stack with Selank — Semax for focus, Selank for calm
+        </div>
+      </div>
+    </div>
+
+    <!-- Selank -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Selank</div>
+          <div class="peptide-aka">Anxiolytic Peptide · Stress &amp; Anxiety · GABA Modulator</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag pink">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box pink">
+          <strong>Optimal Dose:</strong> 500 mcg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning and/or evening<br>
+          <strong>Cycle:</strong> 4 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈2 vials (max cycle)<br>
+          <strong>Tip:</strong> Great for anxiety, mood, and mental clarity — non-sedating
+        </div>
+      </div>
+    </div>
+
+    <!-- Adamax -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Adamax</div>
+          <div class="peptide-aka">BDNF Enhancer · Cognitive Performance · Neuroprotection</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag pink">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box pink">
+          <strong>Optimal Dose:</strong> 1 mg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning<br>
+          <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈9 vials (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- DSIP -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">DSIP</div>
+          <div class="peptide-aka">Delta Sleep-Inducing Peptide · Deep Sleep · Recovery</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag pink">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box pink">
+          <strong>Loading Phase:</strong> 100 mcg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 300 mcg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> 30–60 mins before bed<br>
+          <strong>Cycle:</strong> 6 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈2 vials (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- Cerebrolysin -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Cerebrolysin</div>
+          <div class="peptide-aka">Neuropeptide Complex · Cognitive Function · Neuroprotection</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag pink">60mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">60mg</td><td>3 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box pink">
+          <strong>Loading Phase:</strong> 20 mg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 32 mg — split into 2 doses, morning and night<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Intramuscular<br>
+          <strong>Cycle:</strong> 4-week cycles — no more than 4x per year<br>
+          <strong>Vials per Cycle:</strong> ≈15 vials (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- Epithalon -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Epithalon</div>
+          <div class="peptide-aka">Epitalon Tetrapeptide · Pineal Bioregulator · Telomere Support · Longevity</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag pink">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box pink">
+          <strong>Loading Phase:</strong> 5 mg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 10 mg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Evening<br>
+          <strong>Cycle:</strong> 10 days every 3–6 months<br>
+          <strong>Vials per Cycle:</strong> ≈10 vials (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- FOXO4-DRI -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">FOXO4-DRI</div>
+          <div class="peptide-aka">Senolytic Peptide · Senescent Cell Clearance · Longevity</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag pink">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>2 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box pink">
+          <strong>Loading Phase:</strong> 1 mg — titrate up gradually<br>
+          <strong>Optimal Dose:</strong> 2 mg<br>
+          <strong>Frequency:</strong> 5x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning<br>
+          <strong>Cycle:</strong> 2 weeks on — 2–3x per year<br>
+          <strong>Vials per Cycle:</strong> ≈2 vials (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- Pinealon -->
+    <div class="peptide-block neuro">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Pinealon</div>
+          <div class="peptide-aka">Pineal Bioregulator Tripeptide · Brain Function · Sleep &amp; Cognition</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag pink">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box pink">
+          <strong>Loading Phase:</strong> 5 mg — 10-day cycle<br>
+          <strong>Optimal Dose:</strong> 10 mg — 20-day cycle<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Evening<br>
+          <strong>Cycle:</strong> 1–2x per year<br>
+          <strong>Vials per Cycle:</strong> ≈20 vials (max cycle)
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CATEGORY: TANNING / LIBIDO -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="category-header">
+      <div class="category-label">☀️ Tanning &amp; Libido</div>
+      <div class="category-line"></div>
+    </div>
+
+    <!-- MT1 -->
+    <div class="peptide-block mt2grad">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">MT1</div>
+          <div class="peptide-aka">Melanotan 1 · Melanocyte Stimulator · Tanning</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag gold">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box gold">
+          <strong>Loading Phase:</strong> Start at 250 mcg and titrate up gradually over 1–2 weeks<br>
+          <strong>Optimal Dose:</strong> 500 mcg<br>
+          <strong>Frequency:</strong> 1-2x weekly<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>⚠️ Note:</strong> Nausea common at start — inject 30 mins before bed and have food ready<br>
+          <strong>Tip:</strong> UV exposure required to activate tanning — don't skip sunlight
+        </div>
+      </div>
+    </div>
+
+    <!-- MT2 -->
+    <div class="peptide-block mt2grad">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">MT2</div>
+          <div class="peptide-aka">Melanotan 2 · Melanocyte Stimulator · Tanning + Libido</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag gold">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box gold">
+          <strong>Loading Phase:</strong> Start at 250 mcg daily and titrate up gradually over 1–2 weeks<br>
+          <strong>Optimal Dose:</strong> 500 mcg<br>
+          <strong>Frequency:</strong> 1-2x weekly<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>⚠️ Note:</strong> Nausea common at start — inject 30 mins before bed and have food ready<br>
+          <strong>Tip:</strong> UV exposure required to activate tanning — don't skip sunlight
+        </div>
+      </div>
+    </div>
+
+    <!-- PT-141 -->
+    <div class="peptide-block libido">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">PT-141</div>
+          <div class="peptide-aka">Bremelanotide · Sexual Function · Libido · Arousal</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag gold">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box gold">
+          <strong>Optimal Dose:</strong> 1-2 mg<br>
+          <strong>Frequency:</strong> As needed — max 3x per week<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> 45–60 minutes before activity<br>
+          <strong>Tip:</strong> Start lower to assess response — flushing and nausea are common at higher doses
+        </div>
+      </div>
+    </div>
+
+    <!-- Kisspeptin -->
+    <div class="peptide-block libido">
+      <div class="peptide-header">
+        <div>
+          <div class="peptide-name">Kisspeptin</div>
+          <div class="peptide-aka">GnRH Stimulator · Testosterone · Hormonal Balance · Fertility</div>
+        </div>
+      </div>
+      <div class="vial-tags">
+        <span class="vial-tag pink">10mg vial</span>
+      </div>
+      <div class="peptide-body">
+        <div class="section-title">Step 1 — Reconstitute</div>
+        <table class="recon-table">
+          <tbody><tr><th>Vial Size</th><th>Add BAC Water</th></tr>
+          <tr><td class="hi">10mg</td><td>1 mL</td></tr>
+        </tbody></table>
+        <div class="section-title">Step 2 — Schedule</div>
+        <div class="schedule-box pink">
+          <strong>Optimal Dose:</strong> 200 mcg<br>
+          <strong>Frequency:</strong> Daily<br>
+          <strong>Inject:</strong> Subcutaneous<br>
+          <strong>Timing:</strong> Morning<br>
+          <strong>Cycle:</strong> 4–8 weeks on / 4 weeks off<br>
+          <strong>Vials per Cycle:</strong> ≈2 vials (max cycle)<br>
+          <strong>Tip:</strong> Works by restoring your natural hormone axis — best for low testosterone, hormonal imbalance, and fertility support
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /body-wrap -->
+
+  <div class="inject-section">
+    <div class="inject-title">How to Inject — All Peptides</div>
+    <ol class="inject-steps">
+      <li>Wipe vial stopper with an alcohol swab and let dry completely</li>
+      <li>Draw the exact units shown by the calculator into your syringe</li>
+      <li>Wipe injection site with a fresh alcohol swab — let dry</li>
+      <li>Pinch skin on belly, thigh, or upper arm — rotate sites daily</li>
+      <li>Insert needle at 45° angle into the pinched skin</li>
+      <li>Inject slowly and steadily — wait 5 seconds before withdrawing</li>
+      <li>Dispose of needle safely in a sharps container — never reuse</li>
+    </ol>
+    <div style="margin-top:14px;font-size:11px;color:#7b7baa;line-height:1.7;">
+      <strong style="color:#00e5ff;">Storage:</strong> Unreconstituted vials — refrigerator or freezer · Reconstituted vials — refrigerator only · Use within 28 days of mixing · Never freeze reconstituted peptides
+    </div>
+  </div>
+
+  <div class="disclaimer">
+    ⚠️ For Research Purposes Only — Not for Human or Veterinary Use
+    <div style="font-size:10.5px;font-weight:400;color:#c0b070;margin-top:8px;letter-spacing:.2px;">We are not doctors or licensed medical professionals. This guide is for general reference only and is not medical advice. Please consult a healthcare provider before starting any protocol. By using these products you take full responsibility for your own health decisions.</div>
+  </div>
+
+</div>
+</body>
+</html>

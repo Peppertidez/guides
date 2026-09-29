@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#04070f">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌶️</text></svg>">
+<title>Peptide Mixing Guide — Peppertidez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#04070f; --panel1:#0a1426; --panel2:#070f1f; --border:#1c2747;
+    --border-soft:rgba(40,120,200,.22);
+    --ink:#eef4ff; --body:#9fb0d0; --muted:#56638a;
+    --cyan:#00dcff; --purple:#b06fff;
+    --yes:#2fe6a4; --no:#ff6b81;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;background:#04070f}
+  body{color:var(--body);font-family:'Outfit',Arial,Helvetica,sans-serif;line-height:1.5;background:#04070f}
+  .page{background:#04070f;background-image:radial-gradient(1200px 500px at 50% -8%,rgba(0,120,200,.10),transparent 70%);
+    min-height:100vh;padding:26px 0 60px}
+  .wrap{max-width:900px;margin:0 auto;padding:0 16px}
+
+  .brand{text-align:center;padding:8px 0 22px}
+  .wordmark{font-weight:800;font-size:30px;letter-spacing:-.5px;
+    background:linear-gradient(180deg,#ffffff 0%,#aab8d8 100%);
+    -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .tagline{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--muted);margin-top:6px}
+
+  .titlecard{background:linear-gradient(160deg,var(--panel1) 0%,var(--panel2) 100%);
+    border:1px solid var(--border-soft);border-radius:18px;padding:26px 28px;position:relative;overflow:hidden;text-align:center}
+  .titlecard::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(47,168,232,.55),transparent)}
+  .titlecard h1{margin:0 0 6px;color:var(--ink);font-weight:800;font-size:25px;letter-spacing:-.01em}
+  .titlecard p{margin:0;color:var(--body);font-size:14px}
+
+  .panel{background:linear-gradient(160deg,var(--panel1) 0%,var(--panel2) 100%);
+    border:1px solid var(--border);border-radius:16px;padding:18px;margin-top:16px}
+
+  /* Mode switch */
+  .modes{display:flex;gap:4px;background:#060d1a;border:1px solid var(--border);border-radius:11px;padding:4px;margin-bottom:14px}
+  .mode-btn{flex:1;text-align:center;font-family:'Outfit',sans-serif;font-weight:600;font-size:13px;color:var(--body);
+    background:none;border:none;padding:9px 4px;border-radius:8px;cursor:pointer;transition:.14s}
+  .mode-btn.on{background:linear-gradient(135deg,var(--cyan),var(--purple));color:#04070f;font-weight:700}
+
+  .modehint{font-size:12.5px;color:var(--muted);margin:0 2px 12px}
+  .search{width:100%;padding:13px 14px;font-size:16px;font-family:'Outfit',sans-serif;color:var(--ink);
+    border:1.5px solid var(--border);border-radius:11px;outline:none;background:#060d1a}
+  .search::placeholder{color:var(--muted)}
+  .search:focus{border-color:var(--cyan)}
+
+  .catblock{margin-top:16px}.catblock:first-child{margin-top:14px}
+  .cathead{margin:6px 0 11px}
+  .catbar{display:block;height:3px;border-radius:3px;margin:0 10px 9px}
+  .catname{display:block;margin-left:10px;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--body)}
+  .cat-rec .catbar{background:linear-gradient(90deg,#b06fff,#00a3ff)}
+  .cat-gh  .catbar{background:linear-gradient(90deg,#ff5f6d,#ffa63d)}
+  .cat-met .catbar{background:linear-gradient(90deg,#0d3fb0,#ffffff)}
+  .cat-neu .catbar{background:linear-gradient(90deg,#1f9d5f,#3ee78f)}
+  .cat-tan .catbar{background:linear-gradient(90deg,#b06fff,#ff5f7a)}
+
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:500;
+    background:rgba(255,255,255,.04);border:1.5px solid var(--border);color:var(--ink);
+    padding:8px 11px;border-radius:9px;cursor:pointer;transition:.14s;white-space:nowrap}
+  .chip:hover{border-color:var(--cyan)}
+  .chip.on{background:linear-gradient(135deg,var(--cyan),var(--purple));color:#04070f;border-color:transparent;font-weight:700}
+  .chip.hide,.catblock.hide{display:none}
+
+  #result{margin-top:16px}
+  .sel{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 4px 14px}
+  .sel h2{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:23px;margin:0;color:var(--ink);letter-spacing:-.01em}
+  .sel .hint{font-size:13px;color:var(--muted)}
+  .shopbtn{margin-left:auto;font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;text-decoration:none;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));color:#04070f;padding:8px 14px;border-radius:9px;white-space:nowrap}
+
+  .badge{width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:800;flex:none;line-height:1}
+  .badge.y{background:var(--yes);color:#04140d}
+  .badge.n{background:var(--no);color:#1a0509}
+  .badge.u{background:#33405e;color:#c7d2e6}
+
+  .group{border-radius:14px;padding:15px 16px;margin-bottom:12px;border:1px solid}
+  .group.yes{background:linear-gradient(160deg,#0a1f1a 0%,#07130f 100%);border-color:rgba(47,230,164,.38)}
+  .group.no{background:linear-gradient(160deg,#210f14 0%,#160a0d 100%);border-color:rgba(255,107,129,.40)}
+  .ghead{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+  .gtitle{font-weight:700;font-size:16px}
+  .yes .gtitle{color:var(--yes)} .no .gtitle{color:var(--no)}
+  .gcount{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--body);margin-left:auto}
+  .items{display:flex;flex-wrap:wrap;gap:7px}
+  .item{display:inline-flex;align-items:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;
+    background:rgba(255,255,255,.08);padding:5px 6px 5px 12px;border-radius:9px;border:1px solid rgba(255,255,255,.14)}
+  .item .iname{color:var(--ink);cursor:pointer}
+  .addcart{font-family:'Outfit',sans-serif;font-weight:700;font-size:12px;text-decoration:none;white-space:nowrap;
+    background:linear-gradient(135deg,var(--cyan),var(--purple));color:#04070f;padding:6px 11px;border-radius:7px;line-height:1}
+  .addcart:active{opacity:.85}
+  .addcart.sm{font-size:11px;padding:5px 9px}
+  .empty{color:var(--muted);text-align:center;padding:42px 10px;font-size:15px}
+  .nodata{font-size:12px;color:var(--muted);margin:4px 4px 0}
+
+  /* Verdict (compare) */
+  .verdict{border-radius:16px;padding:24px 20px;text-align:center;border:1px solid;margin-bottom:12px}
+  .verdict.y{background:linear-gradient(160deg,#0a1f1a,#07130f);border-color:rgba(47,230,164,.42)}
+  .verdict.n{background:linear-gradient(160deg,#210f14,#160a0d);border-color:rgba(255,107,129,.44)}
+  .verdict.u{background:linear-gradient(160deg,#0e1626,#0a1120);border-color:var(--border)}
+  .verdict .vbadge{width:52px;height:52px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;margin-bottom:12px}
+  .verdict.y .vbadge{background:var(--yes);color:#04140d}
+  .verdict.n .vbadge{background:var(--no);color:#1a0509}
+  .verdict.u .vbadge{background:#33405e;color:#c7d2e6}
+  .verdict .big{font-size:22px;font-weight:800;color:var(--ink)}
+  .verdict .sub{font-size:13px;color:var(--body);margin-top:6px}
+  .vshops{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+  .vshops a{font-family:'Outfit',sans-serif;font-size:13px;font-weight:700;text-decoration:none;color:var(--ink);
+    background:rgba(255,255,255,.06);border:1px solid var(--border);padding:9px 14px;border-radius:9px}
+
+  /* Stack */
+  .stackbar{display:flex;flex-wrap:wrap;gap:7px;margin:2px 2px 14px}
+  .stackchip{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:12.5px;font-weight:600;
+    color:var(--ink);background:rgba(255,255,255,.06);border:1px solid var(--border);padding:6px 8px 6px 11px;border-radius:9px}
+  .stackchip .rm{cursor:pointer;color:var(--no);font-weight:800;font-size:14px;line-height:1}
+  .summary{font-size:14px;color:var(--body);margin:0 2px 12px;font-weight:600}
+  .pairs{display:flex;flex-wrap:wrap;gap:7px}
+  .pair{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--ink);
+    background:rgba(255,255,255,.06);padding:6px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.12)}
+
+  .legend{display:flex;flex-wrap:wrap;gap:20px;margin-top:16px;padding:15px 16px;
+    background:linear-gradient(160deg,var(--panel1) 0%,var(--panel2) 100%);border:1px solid var(--border);border-radius:14px}
+  .leg{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--body)}
+
+  .gridtoggle{margin:16px 0 0;text-align:center}
+  .gridtoggle button{font-family:'Outfit',sans-serif;font-weight:600;font-size:14px;color:var(--body);
+    background:rgba(255,255,255,.03);border:1.5px solid var(--border);border-radius:10px;padding:11px 20px;cursor:pointer}
+  .gridtoggle button:hover{border-color:var(--cyan);color:var(--ink)}
+  #matrixWrap{display:none;margin-top:14px;overflow:auto;border:1px solid var(--border);border-radius:14px;background:#060d1a;-webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse;font-family:'JetBrains Mono',monospace}
+  th,td{width:22px;height:22px;min-width:22px;border:1px solid #10203a;padding:0;text-align:center}
+  th.rh{position:sticky;left:0;background:#060d1a;z-index:2;width:auto;min-width:120px;text-align:left;padding:0 8px;font-weight:600;font-size:11px;white-space:nowrap;color:var(--body)}
+  thead th{position:sticky;top:0;background:#060d1a;z-index:1;height:112px;vertical-align:bottom;font-weight:600;font-size:10px;color:var(--muted)}
+  thead th.corner{left:0;z-index:3}
+  thead th span{writing-mode:vertical-rl;transform:rotate(180deg);display:inline-block;padding-bottom:5px}
+  td.yes{background:#16b981} td.no{background:#e0455e} td.na{background:#08111f} td.self{background:#223052}
+
+  .cta{text-align:center;margin-top:22px}
+  .cta a{display:inline-block;background:linear-gradient(135deg,var(--cyan) 0%,var(--purple) 100%);color:#04070f;font-weight:700;font-size:15px;text-decoration:none;padding:14px 30px;border-radius:10px;letter-spacing:.3px}
+  .cta .sub{font-size:12px;color:var(--muted);margin-top:10px}
+
+  .disclaimer{margin-top:22px;font-size:12px;color:var(--muted);line-height:1.65;border-top:1px solid var(--border);padding-top:16px}
+  .disclaimer strong{color:var(--body)}
+
+  @media(max-width:520px){ .titlecard h1{font-size:22px} .sel h2{font-size:20px} .wordmark{font-size:26px} }
+  @media(min-width:700px){
+    .wordmark{font-size:34px}
+    .titlecard{padding:30px 34px}
+    .titlecard h1{font-size:30px}
+    .titlecard p{font-size:15px}
+    .panel{padding:22px}
+    .mode-btn{font-size:14px;padding:11px 6px}
+    .chip{font-size:13.5px;padding:9px 13px}
+    .catname{font-size:12px}
+    .item{font-size:13.5px}
+    .sel h2{font-size:26px}
+    .group{padding:17px 18px}
+    .gtitle{font-size:17px}
+  }
+</style>
+<style>
+  .ptzgh-ruo{background:linear-gradient(90deg,rgba(0,220,255,.12),rgba(176,111,255,.12));border-bottom:1px solid rgba(255,255,255,.08);font:12px/1.4 'Outfit',system-ui,-apple-system,Segoe UI,sans-serif;letter-spacing:.02em;text-align:center;color:#8A93AD;padding:8px 16px;position:relative;z-index:2;margin:0}
+  .ptzgh-back{max-width:900px;margin:0 auto;padding:14px 16px 0;position:relative;z-index:2}
+  .ptzgh-back a{display:inline-flex;align-items:center;gap:6px;font:500 14px/1 'Outfit',system-ui,-apple-system,Segoe UI,sans-serif;color:#8A93AD;text-decoration:none;padding:6px 0}
+  .ptzgh-back a:hover{color:#00DCFF}
+</style>
+</head>
+<body>
+<div class="ptzgh-ruo">For laboratory and research use only. Not for human consumption.</div>
+<nav class="ptzgh-back"><a href="./"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>All resources</a></nav>
+<div class="page">
+<div class="wrap">
+
+  <div class="brand">
+    <div class="wordmark">PEPPERTIDEZ</div>
+    <div class="tagline">Advanced Research Compounds</div>
+  </div>
+
+  <div class="titlecard">
+    <h1>Peptide Mixing Guide</h1>
+    <p>Check what your peptides can and can't be combined with.</p>
+  </div>
+
+  <div class="panel">
+    <div class="modes">
+      <button class="mode-btn on" data-mode="lookup">Look up one</button>
+      <button class="mode-btn" data-mode="stack">My stack</button>
+    </div>
+    <p class="modehint" id="modehint">Tap a peptide to see what it mixes with.</p>
+    <div id="picker"></div>
+  </div>
+
+  <div id="result">
+    <div class="empty" id="emptyState">Choose a peptide above to see its mixing guide.</div>
+  </div>
+
+  <div class="legend">
+    <div class="leg"><span class="badge y">&#10003;</span> Can mix</div>
+    <div class="leg"><span class="badge n">&#10005;</span> Can't mix</div>
+  </div>
+
+  <div class="gridtoggle">
+    <button id="gridBtn">Show full chart</button>
+    <div id="matrixWrap"></div>
+  </div>
+
+  <div class="cta">
+    <a href="dosing-guide.html">📋 View Full Dosing Guide</a>
+    <div class="sub">Reconstitution, dosing schedules & injection steps.</div>
+  </div>
+
+  <div class="disclaimer">
+    <strong>Please read:</strong> This chart is charted from anecdotal information and is provided for
+    convenience only. It is <strong>not</strong> medical advice or a recommendation. Blank cells mean no
+    information was listed. Researchers should verify and validate all information prior to any use.
+  </div>
+
+</div>
+</div>
+
+<script>
+const LABELS=["AOD", "ARA 290", "BPC 157", "CJC-DAC", "CJC+DAC", "DSIP", "Epitalon", "GHK-Cu", "GHRP-2", "GHRP-6", "GLP1/GIP/GCGR", "HCG", "Hexarelin", "HGH", "HGH Frag 176-191", "Humanin", "IGF-1 LR3", "Ipamorelin", "Kisspeptin", "KPV", "LL-37", "Melanotan", "MGF", "MOTs-c", "NAD+", "Pinealon", "PT-141", "P21", "PE-22-28", "Selank", "Semax", "TA-1", "TB-500", "Tesamorelin", "Thymalin"];
+const GRID=["SOGOOOOOOOROOOOOOOOOOOOOOOOOOOOOOOO", "OSOOOOOOOOROOOOOOOOOOOOOOOOOOOOOOOO", "GOSGGNGGNGRGGBBBGGGGNGOOOGNGGGGGGGG", "OOGSNNGGNGRGGOBBGGNNNGOOOGNGGGGGGGG", "OOGNSNGGNGRGGONNGGNNNGOOOGNGGGGGGGG", "OONNNSGNNNRNNNNNNNNNNNOOONNNBBBNNNN", "OOGGGGSGGGRNNNNNGGNNNNOOOGNGGGGGGGG", "OOGGGNGSNNRNNNNNNGGGNNOOONNNNNNGGGG", "OONNNNGNSNRNNNNNNNNNNNOOOGGNNGGNNNN", "OOGGGNGNNSRGGNNNNNNNNGOOONNNNGGNNGN", "RRRRRRRRRRSRRRRRRRRRRRRRRRRRRRRRRRR", "OOGGGNNNNGRSBNNNNNNNBNOOONNNNNGNNNN", "OOGGGNNNNGRBSNNNNNNNNGOOONNNNGNNNNN", "OOBOONNNNNRNNSNNBNNNNNOOONNNNNNNNNN", "OOBBNNNNNNRNNNSBNNNNNNOOGNNNNNNNNNN", "OOBBNNNNNNRNNNBSNNNNNNGOONNNNNNNNNN", "OOGGGNGNNNRNNBNNSNNNNNOOOGNNGGNGGGG", "OOGGGNGGNNRNNNNNNSNNNNOOOGGNGGGGGGN", "OOGNNNNGNNRNNNNNNNSNNNOOOGNNNNNNNNN", "OOGNNNNGNNRNNNNNNNNSNNOOONNNNGNGGNN", "OONNNNNNNNRBNNNNNNNNSNOOONNNNGGGGNN", "OOGGGNNNNGRNGNNNNNNNNSOOONNNNNGGNNN", "OOOOOOOOOOROOOOGOOOOOOSOGOOOOOOOOOO", "OOOOOOOOOOROOOOOOOOOOOOSOOOOOOOOOOO", "OOOOOOOOOOROOOGOOOOOOOGOSOOOOOOOOOG", "OOGGGNGNGNRNNNNNGGGNNNOOOSNNGNGGNGN", "OONNNNNNGNRNNNNNNGNNNNOOONSNNGBNNNN", "OOGGGNGNNNRNNNNNNNNNNNOOONNSBBNNNNN", "OOGGGBGNNNRNNNNNGGNNNNOOOGNBSNNGGNG", "OOGGGBGNGGRNGNNNGGNGGNOOONGBNSGGNGN", "OOGGGBGNGGRGNNNNNGNNGGOOOGBNNGSGGGG", "OOGGGNGGNNRNNNNNGGNGGGOOOGNNGGGSNGG", "OOGGGNGGNNRNNNNNGGNGGNOOONNNGNGNSGN", "OOGGGNGGNGRNNNNNGGNNNNOOOGNNNGGGGSN", "OOGGGNGGNNRNNNNNGNNNNNOOGNNNGNGGNNS"];
+
+const CATEGORIES=[
+  {key:'rec', name:'Recovery & Healing',           names:["ARA 290","BPC 157","GHK-Cu","KPV","LL-37","TA-1","TB-500","Thymalin"]},
+  {key:'gh',  name:'Growth Hormone',                names:["CJC-DAC","CJC+DAC","GHRP-2","GHRP-6","Hexarelin","HGH","HGH Frag 176-191","IGF-1 LR3","Ipamorelin","MGF","Tesamorelin"]},
+  {key:'met', name:'Metabolic & Weight Management', names:["AOD","GLP1/GIP/GCGR"]},
+  {key:'neu', name:'Neuro & Cognitive',             names:["DSIP","Epitalon","Humanin","MOTs-c","NAD+","P21","PE-22-28","Pinealon","Selank","Semax"]},
+  {key:'tan', name:'Tanning & Libido',              names:["HCG","Kisspeptin","Melanotan","PT-141"]}
+];
+
+const PRODUCT_URLS = {};
+const PRODUCT_IDS = {};
+function shopUrl(name){ return '#' }
+function cartUrl(name){ return '#' }
+function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;'); }
+
+function bucketOf(c){ if(c==='G'||c==='B') return 'yes'; if(c==='O'||c==='R') return 'no'; return null; }
+function pairStatus(a,b){ return bucketOf(GRID[a][b]); }
+const idx=n=>LABELS.indexOf(n);
+
+let mode='lookup';
+let sel=[];
+const pickerEl=document.getElementById('picker');
+const resultEl=document.getElementById('result');
+const modehintEl=document.getElementById('modehint');
+const HINTS={lookup:"Tap a peptide to see what it mixes with.",compare:"Tap two peptides to see if they can be combined.",stack:"Tap everything in your stack — we'll flag any bad pairs."};
+
+// Build categorized picker
+CATEGORIES.forEach(cat=>{
+  const block=document.createElement('div');
+  block.className='catblock cat-'+cat.key;
+  block.innerHTML='<div class="cathead"><span class="catbar"></span><span class="catname">'+cat.name+'</span></div>';
+  const row=document.createElement('div'); row.className='chips';
+  cat.names.forEach(n=>{
+    const i=idx(n); if(i<0) return;
+    const b=document.createElement('button');
+    b.className='chip'; b.textContent=n; b.dataset.i=i; b.onclick=()=>toggle(i);
+    row.appendChild(b);
+  });
+  block.appendChild(row); pickerEl.appendChild(block);
+});
+const allChips=[...pickerEl.querySelectorAll('.chip')];
+
+// Mode switch
+document.querySelectorAll('.mode-btn').forEach(btn=>{
+  btn.onclick=()=>{
+    mode=btn.dataset.mode;
+    document.querySelectorAll('.mode-btn').forEach(b=>b.classList.toggle('on',b===btn));
+    modehintEl.textContent=HINTS[mode];
+    if(mode==='lookup') sel=sel.slice(-1);
+    else if(mode==='compare') sel=sel.slice(-2);
+    highlight(); render();
+  };
+});
+
+function toggle(i){
+  if(mode==='lookup'){ sel=[i]; }
+  else if(mode==='compare'){
+    const p=sel.indexOf(i);
+    if(p>-1) sel.splice(p,1); else sel.push(i);
+    if(sel.length>2) sel.shift();
+  } else { // stack
+    const p=sel.indexOf(i);
+    if(p>-1) sel.splice(p,1); else sel.push(i);
+  }
+  highlight(); render();
+  if(mode==='lookup' || (mode==='compare'&&sel.length===2)) resultEl.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function removeFromStack(i){ const p=sel.indexOf(i); if(p>-1){ sel.splice(p,1); highlight(); render(); } }
+function highlight(){ allChips.forEach(c=>c.classList.toggle('on', sel.includes(+c.dataset.i))); }
+
+function render(){
+  if(mode==='lookup') return sel.length?renderLookup(sel[0]):emptyMsg("Choose a peptide above to see its mixing guide.");
+  if(mode==='compare') return renderCompare();
+  return renderStack();
+}
+function emptyMsg(m){ resultEl.innerHTML='<div class="empty">'+m+'</div>'; }
+
+function itemChip(j){
+  return '<div class="item"><span class="iname" data-i="'+j+'">'+esc(LABELS[j])+'</span>'+
+    '</div>';
+}
+function wireItems(){ resultEl.querySelectorAll('.iname').forEach(el=>el.onclick=()=>{ mode='lookup';
+  document.querySelectorAll('.mode-btn').forEach(b=>b.classList.toggle('on',b.dataset.mode==='lookup'));
+  modehintEl.textContent=HINTS.lookup; sel=[+el.dataset.i]; highlight(); render();
+  resultEl.scrollIntoView({behavior:'smooth',block:'start'}); }); }
+
+function renderLookup(i){
+  const row=GRID[i]; const yes=[],no=[]; let none=0;
+  for(let j=0;j<LABELS.length;j++){ if(j===i) continue; const b=bucketOf(row[j]); if(b==='yes')yes.push(j); else if(b==='no')no.push(j); else none++; }
+  let h='<div class="sel"><h2>'+esc(LABELS[i])+'</h2><span class="hint">what it can mix with</span>'+
+    '</div>';
+  if(yes.length) h+='<div class="group yes"><div class="ghead"><span class="badge y">&#10003;</span>'+
+    '<span class="gtitle">Can mix</span><span class="gcount">'+yes.length+'</span></div><div class="items">'+yes.map(itemChip).join('')+'</div></div>';
+  if(no.length) h+='<div class="group no"><div class="ghead"><span class="badge n">&#10005;</span>'+
+    '<span class="gtitle">Can\u2019t mix</span><span class="gcount">'+no.length+'</span></div><div class="items">'+no.map(itemChip).join('')+'</div></div>';
+  if(!yes.length&&!no.length) h+='<div class="empty">No mixing information listed for this one.</div>';
+  if(none) h+='<div class="nodata">'+none+' other peptide'+(none>1?'s':'')+' had no information listed.</div>';
+  resultEl.innerHTML=h; wireItems();
+}
+
+function renderCompare(){
+  if(sel.length<2) return emptyMsg(sel.length===1?"Pick one more peptide to compare.":"Pick two peptides to compare.");
+  const [a,b]=sel; const st=pairStatus(a,b);
+  const cls=st==='yes'?'y':st==='no'?'n':'u';
+  const icon=st==='yes'?'&#10003;':st==='no'?'&#10005;':'?';
+  const big=st==='yes'?'Can mix':st==='no'?"Can't mix":'No info listed';
+  const sub=st==='yes'?'These have been combined together.':st==='no'?'These are listed as not to be mixed.':'No mixing info was listed for this pair.';
+  let h='<div class="sel"><h2>'+esc(LABELS[a])+' + '+esc(LABELS[b])+'</h2></div>';
+  h+='<div class="verdict '+cls+'"><div class="vbadge">'+icon+'</div><div class="big">'+big+'</div><div class="sub">'+sub+'</div></div>';
+  
+  resultEl.innerHTML=h;
+}
+
+function renderStack(){
+  if(sel.length<2) return emptyMsg(sel.length===1?"Add at least one more peptide to check your stack.":"Add two or more peptides to check your stack.");
+  let bar='<div class="stackbar">'+sel.map(i=>'<span class="stackchip"><span>'+esc(LABELS[i])+'</span>'+
+    ''+
+    '<span class="rm" data-i="'+i+'">&times;</span></span>').join('')+'</div>';
+  const bad=[],unk=[],ok=[];
+  for(let x=0;x<sel.length;x++)for(let y=x+1;y<sel.length;y++){
+    const a=sel[x],b=sel[y]; const st=pairStatus(a,b);
+    const label=LABELS[a]+' + '+LABELS[b];
+    if(st==='no') bad.push(label); else if(st==='yes') ok.push(label); else unk.push(label);
+  }
+  const total=bad.length+unk.length+ok.length;
+  let sum='<div class="summary">'+sel.length+' peptides · '+total+' combinations — '+
+    (bad.length? bad.length+' to avoid':'no conflicts')+(unk.length?', '+unk.length+' no info':'')+'.</div>';
+  let h='<div class="sel"><h2>Your stack</h2></div>'+bar+sum;
+  if(bad.length) h+='<div class="group no"><div class="ghead"><span class="badge n">&#10005;</span><span class="gtitle">Don\u2019t mix</span><span class="gcount">'+bad.length+'</span></div><div class="pairs">'+bad.map(p=>'<span class="pair">'+esc(p)+'</span>').join('')+'</div></div>';
+  if(ok.length) h+='<div class="group yes"><div class="ghead"><span class="badge y">&#10003;</span><span class="gtitle">Fine to mix</span><span class="gcount">'+ok.length+'</span></div><div class="pairs">'+ok.map(p=>'<span class="pair">'+esc(p)+'</span>').join('')+'</div></div>';
+  if(unk.length) h+='<div class="group" style="border-color:var(--border);background:linear-gradient(160deg,#0e1626,#0a1120)"><div class="ghead"><span class="badge u">?</span><span class="gtitle" style="color:var(--body)">No info listed</span><span class="gcount">'+unk.length+'</span></div><div class="pairs">'+unk.map(p=>'<span class="pair">'+esc(p)+'</span>').join('')+'</div></div>';
+  resultEl.innerHTML=h;
+  resultEl.querySelectorAll('.rm').forEach(el=>el.onclick=()=>removeFromStack(+el.dataset.i));
+}
+
+// Full grid
+const gridBtn=document.getElementById('gridBtn');
+const matrixWrap=document.getElementById('matrixWrap');
+let built=false;
+gridBtn.onclick=()=>{
+  const open=matrixWrap.style.display==='block';
+  matrixWrap.style.display=open?'none':'block';
+  gridBtn.textContent=open?'Show full chart':'Hide full chart';
+  if(!built){ buildMatrix(); built=true; }
+};
+function cellClass(c){ const b=bucketOf(c); if(b) return b; if(c==='S') return 'self'; return 'na'; }
+function buildMatrix(){
+  let h='<table><thead><tr><th class="corner rh"></th>';
+  LABELS.forEach(n=>{h+='<th><span>'+esc(n)+'</span></th>';});
+  h+='</tr></thead><tbody>';
+  GRID.forEach((row,i)=>{ h+='<tr><th class="rh">'+esc(LABELS[i])+'</th>';
+    for(let j=0;j<LABELS.length;j++){ h+='<td class="'+cellClass(row[j])+'"></td>'; } h+='</tr>'; });
+  h+='</tbody></table>'; matrixWrap.innerHTML=h;
+}
+</script>
+</body>
+</html>
