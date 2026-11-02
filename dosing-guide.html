@@ -93,9 +93,18 @@
   .howto-store { margin-top: 12px; font-size: 11px; color: #7b7baa; line-height: 1.7; }
   .howto-store strong { color: #00e5ff; }
   .howto-box.topical-how .howto-store strong { color: #f97316; }
-  .jump-links { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 12px; }
-  .jump-links a { flex: 1 1 140px; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; padding: 10px 12px; border-radius: 5px; border: 1px solid #00e5ff44; color: #00e5ff; background: #00e5ff12; }
+  html { scroll-behavior: smooth; }
+  .category-header { scroll-margin-top: 12px; }
+  .jump-links { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .jump-links a { display: flex; align-items: center; justify-content: center; text-align: center; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; text-decoration: none; padding: 11px 10px; border-radius: 5px; border: 1px solid #00e5ff44; color: #00e5ff; background: #00e5ff12; line-height: 1.4; }
+  .jump-links a:last-child:nth-child(odd) { grid-column: 1 / -1; }
+  .jump-links a.recovery-link { border-color: #a78bfa44; color: #a78bfa; background: #a78bfa12; }
+  .jump-links a.gh-link { border-color: #ef444444; color: #f87171; background: #ef444412; }
+  .jump-links a.met-link { border-color: #7dd8f044; color: #7dd8f0; background: #7dd8f012; }
+  .jump-links a.neuro-link { border-color: #4ade8044; color: #4ade80; background: #4ade8012; }
+  .jump-links a.libido-link { border-color: #f472b644; color: #f472b6; background: #f472b612; }
   .jump-links a.topical-link { border-color: #f9731644; color: #f97316; background: #f9731612; }
+  .jump-links a:hover { filter: brightness(1.25); }
   @media (max-width: 480px) { .product-photo img { height: 190px; } }
 </style>
 <meta name="robots" content="noindex, nofollow">
@@ -133,9 +142,17 @@
   <div class="body-wrap">
 
     <div class="intro">
-      Below is your complete dosing guide for every peptide. Each section covers how to reconstitute your vial, your optimal dosing schedule, and when to inject. Vials per Cycle is an estimate for a full-length cycle at the optimal dose — round up and keep a spare on hand. Nasal sprays and topical serums come ready to use — no mixing — and have their own sections at the bottom.<br><br>
+      Below is your complete dosing guide for every peptide. Each section covers how to reconstitute your vial, your optimal dosing schedule, and when to inject. Vials per Cycle is an estimate for a full-length cycle at the optimal dose — round up and keep a spare on hand. Nasal sprays and topical serums come ready to use — no mixing — and have their own sections at the bottom. Tap a category below to jump to it.<br><br>
       <a href="calculator.html" style="display:inline-block;background:linear-gradient(135deg,#00e5ff,#0099bb);color:#000;text-decoration:none;font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:12px 24px;border-radius:5px;text-align:center;width:100%;box-sizing:border-box;">🧬 Use Our Dosage Calculator</a>
-      <div class="jump-links"><a href="#nasal">👃 Nasal Sprays</a><a href="#topical" class="topical-link">✨ Topical Serums</a></div>
+      <div class="jump-links">
+        <a href="#recovery" class="recovery-link">🩹 Recovery &amp; Healing</a>
+        <a href="#growth" class="gh-link">💪 Growth Hormone</a>
+        <a href="#metabolic" class="met-link">⚡ Metabolic &amp; Weight</a>
+        <a href="#neuro" class="neuro-link">🧠 Neuro &amp; Cognitive</a>
+        <a href="#libido" class="libido-link">☀️ Tanning &amp; Libido</a>
+        <a href="#nasal">👃 Nasal Sprays</a>
+        <a href="#topical" class="topical-link">✨ Topical Serums</a>
+      </div>
     </div>
 
     
@@ -143,7 +160,7 @@
     <!-- ═══════════════════════════════════════ -->
     <!-- CATEGORY: RECOVERY & HEALING -->
     <!-- ═══════════════════════════════════════ -->
-    <div class="category-header">
+    <div class="category-header" id="recovery">
       <div class="category-label">🩹 Recovery &amp; Healing</div>
       <div class="category-line"></div>
     </div>
@@ -543,7 +560,7 @@
     <!-- ═══════════════════════════════════════ -->
     <!-- CATEGORY: GROWTH HORMONE -->
     <!-- ═══════════════════════════════════════ -->
-    <div class="category-header">
+    <div class="category-header" id="growth">
       <div class="category-label">💪 Growth Hormone</div>
       <div class="category-line"></div>
     </div>
@@ -765,7 +782,7 @@
     <!-- ═══════════════════════════════════════ -->
     <!-- CATEGORY: METABOLIC / WEIGHT -->
     <!-- ═══════════════════════════════════════ -->
-    <div class="category-header">
+    <div class="category-header" id="metabolic">
       <div class="category-label">⚡ Metabolic &amp; Weight Management</div>
       <div class="category-line"></div>
     </div>
@@ -1092,7 +1109,7 @@
     <!-- ═══════════════════════════════════════ -->
     <!-- CATEGORY: NEURO / COGNITIVE -->
     <!-- ═══════════════════════════════════════ -->
-    <div class="category-header">
+    <div class="category-header" id="neuro">
       <div class="category-label">🧠 Neuro &amp; Cognitive</div>
       <div class="category-line"></div>
     </div>
@@ -1456,7 +1473,7 @@
     <!-- ═══════════════════════════════════════ -->
     <!-- CATEGORY: TANNING / LIBIDO -->
     <!-- ═══════════════════════════════════════ -->
-    <div class="category-header">
+    <div class="category-header" id="libido">
       <div class="category-label">☀️ Tanning &amp; Libido</div>
       <div class="category-line"></div>
     </div>
