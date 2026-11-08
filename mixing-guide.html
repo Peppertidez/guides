@@ -377,7 +377,7 @@ function renderStack(){
   resultEl.querySelectorAll('.rm').forEach(el=>el.onclick=()=>removeFromStack(+el.dataset.i));
 }
 
-const NEVER_NOTES={"GLP1/GIP/GCGR": "GLP-type — always its own injection.", "TZ-2 (Tirz)": "GLP-type — always its own injection.", "Cagrilintide": "Amylin-type — always its own injection.", "Eloralintide": "Amylin-type — given as a separate injection in clinical trials.", "Cerebrolysin": "Manufacturer says not to mix it with other drugs.", "MT1": "Run on its own — no same-syringe support.", "Glutathione": "Reactive antioxidant in a large volume — keep it separate.", "5-Amino": "No same-syringe data — inject on its own.", "Lipo-C w/B12": "Pre-made solution — don't add anything to it.", "Lipo-C 526": "Pre-made solution — don't add anything to it.", "L-Carnitine": "Pre-made intramuscular solution — inject on its own.", "Lemon Bottle": "Pre-made targeted solution — use on its own."};
+const NEVER_NOTES={"GLP1/GIP/GCGR": "GLP-type.", "TZ-2 (Tirz)": "GLP-type.", "Cagrilintide": "Amylin-type.", "Eloralintide": "Amylin-type — kept separate in clinical trials.", "Cerebrolysin": "Manufacturer says not to mix it with other drugs.", "MT1": "Run on its own — no same-syringe support.", "Glutathione": "Reactive antioxidant in a large volume — keep it separate.", "5-Amino": "No same-syringe data.", "Lipo-C w/B12": "Pre-made solution — don't add anything to it.", "Lipo-C 526": "Pre-made solution — don't add anything to it.", "L-Carnitine": "Pre-made intramuscular solution.", "Lemon Bottle": "Pre-made targeted solution — use on its own."};
 function neverList(){
   const out=[];
   for(let i=0;i<LABELS.length;i++){
