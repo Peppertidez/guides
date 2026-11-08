@@ -128,6 +128,14 @@
   .pair{font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:600;color:var(--ink);
     background:rgba(255,255,255,.06);padding:6px 10px;border-radius:8px;border:1px solid rgba(255,255,255,.12)}
 
+  /* Never mix */
+  .nlist{display:flex;flex-direction:column;gap:7px}
+  .ncat{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:8px 2px 1px}
+  .ncat:first-child{margin-top:0}
+  .nrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:8px 12px}
+  .nrow .iname{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer}
+  .nnote{font-size:12.5px;color:var(--body)}
+
   .legend{display:flex;flex-wrap:wrap;gap:20px;margin-top:16px;padding:15px 16px;
     background:linear-gradient(160deg,var(--panel1) 0%,var(--panel2) 100%);border:1px solid var(--border);border-radius:14px}
   .leg{display:flex;align-items:center;gap:9px;font-size:14px;color:var(--body)}
@@ -195,6 +203,7 @@
     <div class="modes">
       <button class="mode-btn on" data-mode="lookup">Look up one</button>
       <button class="mode-btn" data-mode="stack">My stack</button>
+      <button class="mode-btn" data-mode="never">Never mix</button>
     </div>
     <p class="modehint" id="modehint">Tap a peptide to see what it mixes with.</p>
     <div id="picker"></div>
@@ -229,15 +238,15 @@
 </div>
 
 <script>
-const LABELS=["AOD", "ARA 290", "BPC 157", "CJC-DAC", "CJC+DAC", "DSIP", "Epitalon", "GHK-Cu", "GHRP-2", "GHRP-6", "GLP1/GIP/GCGR", "HCG", "Hexarelin", "HGH", "HGH Frag 176-191", "Humanin", "IGF-1 LR3", "Ipamorelin", "Kisspeptin", "KPV", "LL-37", "Melanotan", "MGF", "MOTs-c", "NAD+", "Pinealon", "PT-141", "P21", "PE-22-28", "Selank", "Semax", "TA-1", "TB-500", "Tesamorelin", "Thymalin"];
-const GRID=["SOGOOOOOOOROOOOOOOOOOOOOOOOOOOOOOOO", "OSOOOOOOOOROOOOOOOOOOOOOOOOOOOOOOOO", "GOSGGNGGNGRGGBBBGGGGNGOOOGNGGGGGGGG", "OOGSNNGGNGRGGOBBGGNNNGOOOGNGGGGGGGG", "OOGNSNGGNGRGGONNGGNNNGOOOGNGGGGGGGG", "OONNNSGNNNRNNNNNNNNNNNOOONNNBBBNNNN", "OOGGGGSGGGRNNNNNGGNNNNOOOGNGGGGGGGG", "OOGGGNGSNNRNNNNNNGGGNNOOONNNNNNGGGG", "OONNNNGNSNRNNNNNNNNNNNOOOGGNNGGNNNN", "OOGGGNGNNSRGGNNNNNNNNGOOONNNNGGNNGN", "RRRRRRRRRRSRRRRRRRRRRRRRRRRRRRRRRRR", "OOGGGNNNNGRSBNNNNNNNBNOOONNNNNGNNNN", "OOGGGNNNNGRBSNNNNNNNNGOOONNNNGNNNNN", "OOBOONNNNNRNNSNNBNNNNNOOONNNNNNNNNN", "OOBBNNNNNNRNNNSBNNNNNNOOGNNNNNNNNNN", "OOBBNNNNNNRNNNBSNNNNNNGOONNNNNNNNNN", "OOGGGNGNNNRNNBNNSNNNNNOOOGNNGGNGGGG", "OOGGGNGGNNRNNNNNNSNNNNOOOGGNGGGGGGN", "OOGNNNNGNNRNNNNNNNSNNNOOOGNNNNNNNNN", "OOGNNNNGNNRNNNNNNNNSNNOOONNNNGNGGNN", "OONNNNNNNNRBNNNNNNNNSNOOONNNNGGGGNN", "OOGGGNNNNGRNGNNNNNNNNSOOONNNNNGGNNN", "OOOOOOOOOOROOOOGOOOOOOSOGOOOOOOOOOO", "OOOOOOOOOOROOOOOOOOOOOOSOOOOOOOOOOO", "OOOOOOOOOOROOOGOOOOOOOGOSOOOOOOOOOG", "OOGGGNGNGNRNNNNNGGGNNNOOOSNNGNGGNGN", "OONNNNNNGNRNNNNNNGNNNNOOONSNNGBNNNN", "OOGGGNGNNNRNNNNNNNNNNNOOONNSBBNNNNN", "OOGGGBGNNNRNNNNNGGNNNNOOOGNBSNNGGNG", "OOGGGBGNGGRNGNNNGGNGGNOOONGBNSGGNGN", "OOGGGBGNGGRGNNNNNGNNGGOOOGBNNGSGGGG", "OOGGGNGGNNRNNNNNGGNGGGOOOGNNGGGSNGG", "OOGGGNGGNNRNNNNNGGNGGNOOONNNGNGNSGN", "OOGGGNGGNGRNNNNNGGNNNNOOOGNNNGGGGSN", "OOGGGNGGNNRNNNNNGNNNNNOOGNNNGNGGNNS"];
+const LABELS=["5-Amino", "Adamax", "AHK-Cu", "AOD", "Apollo", "ARA 290", "BPC 157", "Cagrilintide", "Cartalax", "Cerebrolysin", "CJC-DAC", "CJC+DAC", "CJC/IPA Blend", "DSIP", "Eloralintide", "Epitalon", "GHK-Cu", "GHRP-2", "GHRP-6", "GLOW", "GLP1/GIP/GCGR", "Glutathione", "HCG", "Hexarelin", "HGH", "HGH Frag 176-191", "Humanin", "IGF-1 LR3", "Ipamorelin", "Kisspeptin", "KLOW", "KPV", "L-Carnitine", "Lemon Bottle", "Lipo-C 526", "Lipo-C w/B12", "LL-37", "Melanotan", "MGF", "MOTs-c", "MT1", "NAD+", "Pinealon", "PT-141", "P21", "PE-22-28", "Selank", "Semax", "SS-31", "TA-1", "TB-500", "Tesamorelin", "Thymalin", "TZ-2 (Tirz)", "Wolverine"];
+const GRID=["SOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "OSNONOGOGOGGGGOGNGGNROGNNNNNGNNNOOOOGGOOOOGGNNGGOGGGGRG", "ONSOGOGOGOGGGNOGGNNGRONNNNNNGGGGOOOONNOOOONNNNNNOGGGGRG", "OOOSOOGOOOOOOOOOOOOOROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOORO", "ONGOSOGONONNNNONGNNGRONNNNNNNNGGOOOONNOOOONNNNNNOGGNNRG", "OOOOOSOOOOOOOOOOOOOOROOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOORO", "OGGGGOSOGOGGGNOGGNGGROGGBBBGGGGGOOOONGOOOOGNGGGGOGGGGRG", "OOOOOOOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "OGGONOGOSOGGGGOGGGGGRONNNNNGGNNNOOOONNOOOOGNGGGGOGGGGRG", "OOOOOOOOOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "OGGONOGOGOSNGNOGGNGGROGGOBBGGNNNOOOONGOOOOGNGGGGOGGGGRG", "OGGONOGOGONSNNOGGNGGROGGONNGGNNNOOOONGOOOOGNGGGGOGGGGRG", "OGGONOGOGOGNSNOGGNNGRONNONNNGNNNOOOONNOOOOGNNGGGOGGGNRG", "OGNONONOGONNNSOGNNNNRONNNNNNNNNNOOOONNOOOONNNBBBONNNNRN", "OOOOOOOOOOOOOOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "OGGONOGOGOGGGGOSGGGGRONNNNNGGNNNOOOONNOOOOGNGGGGOGGGGRG", "ONGOGOGOGOGGGNOGSNNGRONNNNNNGGGGOOOONNOOOONNNNNNOGGGGRG", "OGNONONOGONNNNOGNSNNRONNNNNNNNNNOOOONNOOOOGGNNGGONNNNRN", "OGNONOGOGOGGNNOGNNSNROGGNNNNNNNNOOOONGOOOONNNNGGONNGNRN", "ONGOGOGOGOGGGNOGGNNSRONNNNNNGNGGOOOONNOOOONNNNNNONGGNRG", "ORRRRRRORORRRRORRRRRSORRRRRRRRRROOOORRRRORRRRRRRORRRRRR", "OOOOOOOOOOOOOOOOOOOOOSOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO", "OGNONOGONOGGNNONNNGNROSBNNNNNNNNOOOOBNOOOONNNNNGONNNNRN", "ONNONOGONOGGNNONNNGNROBSNNNNNNNNOOOONGOOOONNNNGNONNNNRN", "ONNONOBONOOOONONNNNNRONNSNNBNNNNOOOONNOOOONNNNNNONNNNRN", "ONNONOBONOBNNNONNNNNRONNNSBNNNNNOOOONNOOOGNNNNNNONNNNRN", "ONNONOBONOBNNNONNNNNRONNNBSNNNNNOOOONNGOOONNNNNNONNNNRN", "ONNONOGOGOGGNNOGNNNNRONNBNNSNNNNOOOONNOOOOGNNGGNOGGGGRG", "OGGONOGOGOGGGNOGGNNGRONNNNNNSNNNOOOONNOOOOGGNGGGOGGGNRG", "ONGONOGONONNNNONGNNNRONNNNNNNSNNOOOONNOOOOGNNNNNONNNNRN", "ONGOGOGONONNNNONGNNGRONNNNNNNNSGOOOONNOOOONNNNNNONGNNRG", "ONGOGOGONONNNNONGNNGRONNNNNNNNGSOOOONNOOOONNNNGNOGGNNRG", "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOSOOOOOOOOOOOOOOOOOOOOOO", "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOSOOOOOOOOOOOOOOOOOOOOO", "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOSOOOOOOOOOOOOOOOOOOOO", "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOSOOOOOOOOOOOOOOOOOOO", "OGNONONONONNNNONNNNNROBNNNNNNNNNOOOOSNOOOONNNNGGOGGNNRN", "OGNONOGONOGGNNONNNGNRONGNNNNNNNNOOOONSOOOONNNNNGOGNNNRN", "OOOOOOOOOOOOOOOOOOOOROOOOOGOOOOOOOOOOOSOOGOOOOOOOOOOORO", "OOOOOOOOOOOOOOOOOOOOROOOOOOOOOOOOOOOOOOSOOOOOOOOOOOOORO", "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOSOOOOOOOOOOOOOO", "OOOOOOOOOOOOOOOOOOOOROOOOGOOOOOOOOOOOOGOOSOOOOOOOOOOGRO", "OGNONOGOGOGGGNOGNGNNRONNNNNGGGNNOOOONNOOOOSNNGNGOGNGNRN", "OGNONONONONNNNONNGNNRONNNNNNGNNNOOOONNOOOONSNNGBONNNNRN", "ONNONOGOGOGGNNOGNNNNRONNNNNNNNNNOOOONNOOOONNSBBNONNNNRN", "ONNONOGOGOGGGBOGNNNNRONNNNNGGNNNOOOONNOOOOGNBSNNOGGNGRG", "OGNONOGOGOGGGBOGNGGNRONGNNNGGNNGOOOOGNOOOONGBNSGOGNGNRN", "OGNONOGOGOGGGBOGNGGNROGNNNNNGNNNOOOOGGOOOOGBNNGSOGGGGRG", "OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOSOOOOOO", "OGGOGOGOGOGGGNOGGNNNRONNNNNGGNNGOOOOGGOOOOGNNGGGOSNGGRN", "OGGOGOGOGOGGGNOGGNNGRONNNNNGGNGGOOOOGNOOOONNNGNGONSGNRG", "OGGONOGOGOGGGNOGGNGGRONNNNNGGNNNOOOONNOOOOGNNNGGOGGSNRG", "OGGONOGOGOGGNNOGGNNNRONNNNNGNNNNOOOONNOOOGNNNGNGOGNNSRN", "RRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRSR", "OGGOGOGOGOGGGNOGGNNGRONNNNNGGNGGOOOONNOOOONNNGNGONGGNRS"];
 
 const CATEGORIES=[
-  {key:'rec', name:'Recovery & Healing',           names:["ARA 290","BPC 157","GHK-Cu","KPV","LL-37","TA-1","TB-500","Thymalin"]},
-  {key:'gh',  name:'Growth Hormone',                names:["CJC-DAC","CJC+DAC","GHRP-2","GHRP-6","Hexarelin","HGH","HGH Frag 176-191","IGF-1 LR3","Ipamorelin","MGF","Tesamorelin"]},
-  {key:'met', name:'Metabolic & Weight Management', names:["AOD","GLP1/GIP/GCGR"]},
-  {key:'neu', name:'Neuro & Cognitive',             names:["DSIP","Epitalon","Humanin","MOTs-c","NAD+","P21","PE-22-28","Pinealon","Selank","Semax"]},
-  {key:'tan', name:'Tanning & Libido',              names:["HCG","Kisspeptin","Melanotan","PT-141"]}
+  {key:'rec', name:'Recovery & Healing',           names:["AHK-Cu","Apollo","ARA 290","BPC 157","Cartalax","GHK-Cu","GLOW","KLOW","KPV","LL-37","TA-1","TB-500","Thymalin","Wolverine"]},
+  {key:'gh',  name:'Growth Hormone',                names:["CJC-DAC","CJC+DAC","CJC/IPA Blend","GHRP-2","GHRP-6","Hexarelin","HGH","HGH Frag 176-191","IGF-1 LR3","Ipamorelin","MGF","Tesamorelin"]},
+  {key:'met', name:'Metabolic & Weight Management', names:["5-Amino","AOD","Cagrilintide","Eloralintide","GLP1/GIP/GCGR","L-Carnitine","Lemon Bottle","Lipo-C 526","Lipo-C w/B12","TZ-2 (Tirz)"]},
+  {key:'neu', name:'Neuro & Cognitive',             names:["Adamax","Cerebrolysin","DSIP","Epitalon","Glutathione","Humanin","MOTs-c","NAD+","P21","PE-22-28","Pinealon","Selank","Semax","SS-31"]},
+  {key:'tan', name:'Tanning & Libido',              names:["HCG","Kisspeptin","Melanotan","MT1","PT-141"]}
 ];
 
 const PRODUCT_URLS = {};
@@ -255,7 +264,7 @@ let sel=[];
 const pickerEl=document.getElementById('picker');
 const resultEl=document.getElementById('result');
 const modehintEl=document.getElementById('modehint');
-const HINTS={lookup:"Tap a peptide to see what it mixes with.",compare:"Tap two peptides to see if they can be combined.",stack:"Tap everything in your stack — we'll flag any bad pairs."};
+const HINTS={lookup:"Tap a peptide to see what it mixes with.",compare:"Tap two peptides to see if they can be combined.",stack:"Tap everything in your stack — we'll flag any bad pairs.",never:"These always go in their own syringe — never mix them with anything."};
 
 // Build categorized picker
 CATEGORIES.forEach(cat=>{
@@ -302,6 +311,8 @@ function removeFromStack(i){ const p=sel.indexOf(i); if(p>-1){ sel.splice(p,1); 
 function highlight(){ allChips.forEach(c=>c.classList.toggle('on', sel.includes(+c.dataset.i))); }
 
 function render(){
+  pickerEl.style.display = mode==='never' ? 'none' : '';
+  if(mode==='never') return renderNever();
   if(mode==='lookup') return sel.length?renderLookup(sel[0]):emptyMsg("Choose a peptide above to see its mixing guide.");
   if(mode==='compare') return renderCompare();
   return renderStack();
@@ -364,6 +375,31 @@ function renderStack(){
   if(unk.length) h+='<div class="group" style="border-color:var(--border);background:linear-gradient(160deg,#0e1626,#0a1120)"><div class="ghead"><span class="badge u">?</span><span class="gtitle" style="color:var(--body)">No info listed</span><span class="gcount">'+unk.length+'</span></div><div class="pairs">'+unk.map(p=>'<span class="pair">'+esc(p)+'</span>').join('')+'</div></div>';
   resultEl.innerHTML=h;
   resultEl.querySelectorAll('.rm').forEach(el=>el.onclick=()=>removeFromStack(+el.dataset.i));
+}
+
+const NEVER_NOTES={"GLP1/GIP/GCGR": "GLP-type — always its own injection.", "TZ-2 (Tirz)": "GLP-type — always its own injection.", "Cagrilintide": "Amylin-type — always its own injection.", "Eloralintide": "Amylin-type — given as a separate injection in clinical trials.", "Cerebrolysin": "Manufacturer says not to mix it with other drugs.", "SS-31": "Run on its own — no same-syringe support.", "MT1": "Run on its own — no same-syringe support.", "Glutathione": "Reactive antioxidant in a large volume — keep it separate.", "5-Amino": "No same-syringe data — inject on its own.", "Lipo-C w/B12": "Pre-made solution — don't add anything to it.", "Lipo-C 526": "Pre-made solution — don't add anything to it.", "L-Carnitine": "Pre-made intramuscular solution — inject on its own.", "Lemon Bottle": "Pre-made targeted solution — use on its own."};
+function neverList(){
+  const out=[];
+  for(let i=0;i<LABELS.length;i++){
+    let solo=true;
+    for(let j=0;j<LABELS.length;j++){ if(i!==j && bucketOf(GRID[i][j])!=='no'){ solo=false; break; } }
+    if(solo) out.push(i);
+  }
+  return out;
+}
+function renderNever(){
+  const list=neverList(); const seen=new Set();
+  let body='';
+  CATEGORIES.forEach(cat=>{
+    const items=cat.names.map(idx).filter(i=>list.includes(i));
+    if(!items.length) return;
+    body+='<div class="ncat">'+cat.name+'</div>';
+    items.forEach(i=>{ seen.add(i); body+='<div class="nrow"><span class="iname" data-i="'+i+'">'+esc(LABELS[i])+'</span><span class="nnote">'+esc(NEVER_NOTES[LABELS[i]]||'Marked no-mix with every peptide on this chart.')+'</span></div>'; });
+  });
+  list.filter(i=>!seen.has(i)).forEach(i=>{ body+='<div class="nrow"><span class="iname" data-i="'+i+'">'+esc(LABELS[i])+'</span><span class="nnote">'+esc(NEVER_NOTES[LABELS[i]]||'Marked no-mix with every peptide on this chart.')+'</span></div>'; });
+  resultEl.innerHTML='<div class="sel"><h2>Never mix</h2><span class="hint">always use their own syringe</span></div>'+
+    '<div class="group no"><div class="ghead"><span class="badge n">&#10005;</span><span class="gtitle">Never mix with anything</span><span class="gcount">'+list.length+'</span></div><div class="nlist">'+body+'</div></div>';
+  wireItems();
 }
 
 // Full grid
