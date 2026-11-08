@@ -132,9 +132,6 @@
   .nlist{display:flex;flex-direction:column;gap:7px}
   .ncat{font-family:'JetBrains Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:8px 2px 1px}
   .ncat:first-child{margin-top:0}
-  .nrow{display:flex;flex-wrap:wrap;align-items:baseline;gap:3px 10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:8px 12px}
-  .nrow .iname{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer}
-  .nnote{font-size:12.5px;color:var(--body)}
 
   .legend{display:flex;flex-wrap:wrap;gap:20px;margin-top:16px;padding:15px 16px;
     background:linear-gradient(160deg,var(--panel1) 0%,var(--panel2) 100%);border:1px solid var(--border);border-radius:14px}
@@ -377,7 +374,6 @@ function renderStack(){
   resultEl.querySelectorAll('.rm').forEach(el=>el.onclick=()=>removeFromStack(+el.dataset.i));
 }
 
-const NEVER_NOTES={"GLP1/GIP/GCGR": "GLP-type.", "TZ-2 (Tirz)": "GLP-type.", "Cagrilintide": "Amylin-type.", "Eloralintide": "Amylin-type — kept separate in clinical trials.", "Cerebrolysin": "Manufacturer says not to mix it with other drugs.", "MT1": "Run on its own — no same-syringe support.", "Glutathione": "Reactive antioxidant in a large volume — keep it separate.", "5-Amino": "No same-syringe data.", "Lipo-C w/B12": "Pre-made solution — don't add anything to it.", "Lipo-C 526": "Pre-made solution — don't add anything to it.", "L-Carnitine": "Pre-made intramuscular solution.", "Lemon Bottle": "Pre-made targeted solution — use on its own."};
 function neverList(){
   const out=[];
   for(let i=0;i<LABELS.length;i++){
@@ -393,10 +389,11 @@ function renderNever(){
   CATEGORIES.forEach(cat=>{
     const items=cat.names.map(idx).filter(i=>list.includes(i));
     if(!items.length) return;
-    body+='<div class="ncat">'+cat.name+'</div>';
-    items.forEach(i=>{ seen.add(i); body+='<div class="nrow"><span class="iname" data-i="'+i+'">'+esc(LABELS[i])+'</span><span class="nnote">'+esc(NEVER_NOTES[LABELS[i]]||'Marked no-mix with every peptide on this chart.')+'</span></div>'; });
+    items.forEach(i=>seen.add(i));
+    body+='<div class="ncat">'+cat.name+'</div><div class="items">'+items.map(itemChip).join('')+'</div>';
   });
-  list.filter(i=>!seen.has(i)).forEach(i=>{ body+='<div class="nrow"><span class="iname" data-i="'+i+'">'+esc(LABELS[i])+'</span><span class="nnote">'+esc(NEVER_NOTES[LABELS[i]]||'Marked no-mix with every peptide on this chart.')+'</span></div>'; });
+  const rest=list.filter(i=>!seen.has(i));
+  if(rest.length) body+='<div class="items">'+rest.map(itemChip).join('')+'</div>';
   resultEl.innerHTML='<div class="sel"><h2>Never mix</h2><span class="hint">always use their own syringe</span></div>'+
     '<div class="group no"><div class="ghead"><span class="badge n">&#10005;</span><span class="gtitle">Never mix with anything</span><span class="gcount">'+list.length+'</span></div><div class="nlist">'+body+'</div></div>';
   wireItems();
