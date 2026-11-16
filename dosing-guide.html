@@ -48,6 +48,7 @@
   .vial-tag.green { background: #22c55e15; border-color: #22c55e44; color: #22c55e; }
   .vial-tag.orange { background: #f9731615; border-color: #f9731644; color: #f97316; }
   .vial-tag.pink { background: #ec489915; border-color: #ec489944; color: #ec4899; }
+  .vial-tag.ptz-flag { background: #f59e0b22; border-color: #f59e0b; color: #fbbf24; font-weight: 700; }
   .peptide-body { padding: 12px 18px 16px; }
   .section-title { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #7b7baa; margin: 14px 0 6px; }
   .recon-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 4px; }
@@ -197,7 +198,7 @@
         <strong style="color:#fff">BAC water</strong> — bacteriostatic water, 0.9% benzyl alcohol. The default for most of the catalog, and the only one that preserves a vial for repeat draws.<br><br>
         <strong style="color:#fff">0.6% acetic acid, then BAC water</strong> — for hydrophobic compounds that can go cloudy or gel in neutral water. The acid dissolves the powder; the BAC water that follows brings it to volume and carries the preservative. Let it go <strong>completely clear in the acid first</strong> — once BAC water hits undissolved powder the cloudiness will not come out.<br><br>
         <strong style="color:#fff">PBS pH 7.4</strong> — phosphate-buffered saline. An option for ARA-290: some lots turn gel-like in BAC water, and PBS keeps them dissolved.<br><br>
-        <strong style="color:#fff">Vial capacity.</strong> Compounds ship in 3 mL vials, so 3 mL is the most any of them takes — the amounts below never exceed it. NAD+ ships in a 10 mL vial and Glutathione in a 30 mL vial, which is why those two take larger volumes.<br><br>
+        <span class="vial-tag ptz-flag">⚠ Hydrophobic</span> — marks compounds that can go cloudy or gel in BAC water alone. Their solvent table includes an acetic acid option.<br><br><span class="vial-tag ptz-flag">⚠ pH sensitive</span> — marks ARA-290, which can gel in unbuffered water. That is why PBS is listed as an option for it.<br><br>        <strong style="color:#fff">Vial capacity.</strong> Compounds ship in 3 mL vials, so 3 mL is the most any of them takes — the amounts below never exceed it. NAD+ ships in a 10 mL vial and Glutathione in a 30 mL vial, which is why those two take larger volumes.<br><br>
         Whichever solvent you use, add it slowly down the inside wall of the vial and swirl gently. Never shake.
       </div>
     </div>
@@ -433,6 +434,7 @@
       <div class="vial-tags">
         <span class="vial-tag">16mg vial</span>
         <span class="vial-tag">30mg vial</span>
+        <span class="vial-tag ptz-flag">⚠ pH sensitive</span>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
@@ -930,6 +932,7 @@
       </div>
       <div class="vial-tags">
         <span class="vial-tag orange">1mg vial</span>
+        <span class="vial-tag ptz-flag">⚠ Hydrophobic</span>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
@@ -1178,6 +1181,7 @@
       </div>
       <div class="vial-tags">
         <span class="vial-tag orange">10mg vial</span>
+        <span class="vial-tag ptz-flag">⚠ Hydrophobic</span>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
@@ -1835,6 +1839,7 @@
       </div>
       <div class="vial-tags">
         <span class="vial-tag gold">10mg vial</span>
+        <span class="vial-tag ptz-flag">⚠ Hydrophobic</span>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
@@ -1866,6 +1871,7 @@
       </div>
       <div class="vial-tags">
         <span class="vial-tag gold">10mg vial</span>
+        <span class="vial-tag ptz-flag">⚠ Hydrophobic</span>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
@@ -1925,6 +1931,7 @@
       </div>
       <div class="vial-tags">
         <span class="vial-tag pink">10mg vial</span>
+        <span class="vial-tag ptz-flag">⚠ Hydrophobic</span>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
@@ -1992,7 +1999,8 @@
     if (c.contains('subcat-title')) { sub = { el: el, n: 0 }; subs.push(sub); return; }
     if (c.contains('peptide-block')) {
       var name = el.querySelector('.peptide-name'), aka = el.querySelector('.peptide-aka');
-      var hay = norm((name ? name.textContent : '') + ' ' + (aka ? aka.textContent : ''));
+      var flags = Array.prototype.map.call(el.querySelectorAll('.ptz-flag'), function (f) { return f.textContent; }).join(' ');
+      var hay = norm((name ? name.textContent : '') + ' ' + (aka ? aka.textContent : '') + ' ' + flags);
       items.push({ el: el, hay: hay, cat: cat, sub: sub });
       return;
     }
