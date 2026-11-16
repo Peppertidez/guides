@@ -111,6 +111,24 @@
   .jump-links a.nasal-link { border-color: #0284c766; color: #7dd3fc; background: #0284c714; }
   .jump-links a:hover { filter: brightness(1.25); }
   @media (max-width: 480px) { .product-photo img { height: 190px; } }
+  /* Search */
+  .email-wrap { overflow: clip; }
+  .ptz-search { position: sticky; top: 0; z-index: 30; margin: -28px -32px 22px; padding: 14px 32px 12px; background: #0d0d1a; border-bottom: 1px solid #1e1e3a; box-shadow: 0 6px 14px rgba(0,0,0,.35); }
+  .ptz-search-box { position: relative; }
+  .ptz-search-icon { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: #7b7baa; pointer-events: none; }
+  .ptz-search input { width: 100%; box-sizing: border-box; padding: 12px 42px 12px 40px; background: #111127; border: 1px solid #2a2a4a; border-radius: 6px; color: #fff; font-family: 'Courier New', monospace; font-size: 16px; outline: none; -webkit-appearance: none; appearance: none; }
+  .ptz-search input::placeholder { color: #6a6a90; }
+  .ptz-search input:focus { border-color: #00e5ff; box-shadow: 0 0 0 3px #00e5ff22; }
+  .ptz-search input::-webkit-search-cancel-button { display: none; }
+  .ptz-search-clear { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; border: 0; border-radius: 4px; background: transparent; color: #a0a0c0; font-size: 22px; line-height: 1; cursor: pointer; }
+  .ptz-search-clear:hover { color: #00e5ff; background: #00e5ff12; }
+  .ptz-search-clear[hidden] { display: none; }
+  .ptz-search-count { margin-top: 6px; font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: #7b7baa; min-height: 0; }
+  .ptz-search-count:empty { display: none; }
+  .ptz-no-results { padding: 28px 16px; text-align: center; color: #a0a0c0; font-size: 13px; border: 1px dashed #2a2a4a; border-radius: 6px; margin-bottom: 20px; }
+  .ptz-no-results[hidden] { display: none; }
+  .ptz-hide { display: none !important; }
+  @media (max-width: 480px) { .ptz-search { margin: -28px -32px 18px; padding: 12px 20px 10px; } }
 </style>
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#04070f">
@@ -146,6 +164,18 @@
   <!-- BODY -->
   <div class="body-wrap">
 
+    <!-- SEARCH -->
+    <div id="ptzSearchAnchor"></div>
+    <div class="ptz-search" role="search">
+      <div class="ptz-search-box">
+        <svg class="ptz-search-icon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="ptzSearch" type="search" placeholder="Search — e.g. BPC, Kisspeptin, Tirz" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" aria-label="Search compounds">
+        <button type="button" id="ptzSearchClear" class="ptz-search-clear" aria-label="Clear search" hidden>&times;</button>
+      </div>
+      <div id="ptzSearchCount" class="ptz-search-count" aria-live="polite"></div>
+    </div>
+    <div id="ptzNoResults" class="ptz-no-results" hidden>No compounds match &ldquo;<span></span>&rdquo;</div>
+
     <div class="intro">
       Below is your complete dosing guide for every peptide. Each section covers which solvent your vial needs and how much, your optimal dosing schedule, and when to inject. Vials per Cycle is an estimate for a full-length cycle at the optimal dose — round up and keep a spare on hand. Nasal sprays (end of Neuro &amp; Cognitive) and topical serums (end of Recovery &amp; Healing) come ready to use — no mixing. Tap a category below to jump to it.<br><br>
       <a href="calculator.html" style="display:inline-block;background:linear-gradient(135deg,#00e5ff,#0099bb);color:#000;text-decoration:none;font-weight:800;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;padding:12px 24px;border-radius:5px;text-align:center;width:100%;box-sizing:border-box;">🧬 Use Our Dosage Calculator</a>
@@ -163,10 +193,10 @@
     <div style="margin:0 0 22px;padding:16px 18px;border:1px solid rgba(0,229,255,.28);border-radius:6px;background:rgba(0,229,255,.05)">
       <div style="font-size:13px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#00e5ff;margin-bottom:10px">Solvents — read before you mix</div>
       <div style="font-size:12.5px;line-height:1.65;color:#cfd8e3">
-        Not every compound uses the same solvent. Each entry below lists the one it needs.<br><br>
+        Not every compound uses the same solvent. Each entry lists every solvent that works for it — the first one is the recommended pick, and anything listed after <strong style="color:#fff">or</strong> also works.<br><br>
         <strong style="color:#fff">BAC water</strong> — bacteriostatic water, 0.9% benzyl alcohol. The default for most of the catalog, and the only one that preserves a vial for repeat draws.<br><br>
-        <strong style="color:#fff">0.6% acetic acid, then BAC water</strong> — for compounds that will not dissolve in neutral water. The acid dissolves the powder; the BAC water that follows brings it to volume and carries the preservative. Let it go <strong>completely clear in the acid first</strong> — once BAC water hits undissolved powder the cloudiness will not come out.<br><br>
-        <strong style="color:#fff">PBS pH 7.4</strong> — phosphate-buffered saline. Only ARA-290 needs this. It goes gel-like in BAC water and acid will not rescue it.<br><br>
+        <strong style="color:#fff">0.6% acetic acid, then BAC water</strong> — for hydrophobic compounds that can go cloudy or gel in neutral water. The acid dissolves the powder; the BAC water that follows brings it to volume and carries the preservative. Let it go <strong>completely clear in the acid first</strong> — once BAC water hits undissolved powder the cloudiness will not come out.<br><br>
+        <strong style="color:#fff">PBS pH 7.4</strong> — phosphate-buffered saline. An option for ARA-290: some lots turn gel-like in BAC water, and PBS keeps them dissolved.<br><br>
         <strong style="color:#fff">Vial capacity.</strong> Compounds ship in 3 mL vials, so 3 mL is the most any of them takes — the amounts below never exceed it. NAD+ ships in a 10 mL vial and Glutathione in a 30 mL vial, which is why those two take larger volumes.<br><br>
         Whichever solvent you use, add it slowly down the inside wall of the vial and swirl gently. Never shake.
       </div>
@@ -408,10 +438,10 @@
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">16mg</td><td>PBS pH 7.4<br><span style="color:#ff6b6b;font-weight:700">Not BAC water</span></td><td>2 mL</td></tr>
-          <tr><td class="hi">30mg</td><td>PBS pH 7.4<br><span style="color:#ff6b6b;font-weight:700">Not BAC water</span></td><td>3 mL</td></tr>
+          <tr><td class="hi">16mg</td><td>BAC water<br><span style="opacity:.8">or PBS pH 7.4</span></td><td>2 mL</td></tr>
+          <tr><td class="hi">30mg</td><td>BAC water<br><span style="opacity:.8">or PBS pH 7.4</span></td><td>3 mL</td></tr>
         </tbody></table>
-        <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #ff6b6b;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3"><strong style="color:#ff6b6b">Use PBS, not BAC water.</strong> ARA-290 self-associates in low-salt diluents and turns gel-like in BAC water. It needs ionic strength, so more diluent or a different volume will not fix a gelled vial either.</div>
+        <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #00e5ff;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3">BAC water works for most vials. Some lots turn gel-like in BAC water — if yours does, use PBS pH 7.4 (phosphate-buffered saline) at the same amount. PBS holds the pH at 7.4, which keeps ARA-290 dissolved.</div>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box">
           <strong>Loading Phase:</strong> 2 mg — titrate up gradually<br>
@@ -905,10 +935,12 @@
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">1mg (1,000 mcg)</td><td>0.6% acetic acid<br><span style="opacity:.8">then BAC water</span></td><td>0.5 mL AA, then 0.5 mL BAC</td></tr>
+          <tr><td class="hi" rowspan="3" style="vertical-align:top;border-bottom:none">1mg (1,000 mcg)</td><td>0.6% acetic acid<br><span style="opacity:.8">then BAC water</span></td><td>0.5 mL AA, then 0.5 mL BAC</td></tr>
+          <tr><td><span style="opacity:.7">or</span> 0.6% acetic acid alone</td><td>1 mL</td></tr>
+          <tr><td><span style="opacity:.7">or</span> BAC water alone</td><td>1 mL</td></tr>
         </tbody></table>
         <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #00e5ff;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3"><strong style="color:#00e5ff">Acid-first:</strong> add the acetic acid alone and swirl gently until the solution is <strong>completely clear</strong>. Only then add the BAC water. Once BAC water hits powder that has not fully dissolved, the cloudiness locks in and more BAC will not clear it — only more acid, gentle warmth and time will.</div>
-        <div class="tip-box">IGF-1 LR3 should be reconstituted with acetic acid, not BAC water alone — BAC water by itself can cause it to gel. Add the acetic acid first and swirl gently until fully clear, then add the BAC water. Total is still 1 mL, so your calculator numbers don't change. 1 mL of acetic acid alone also works.</div>
+        <div class="tip-box">Acetic acid (with or without BAC water) is the most reliable option. BAC water alone is also used, but IGF-1 LR3 can gel in it — if it isn't perfectly clear, it hasn't dissolved. Every option totals 1 mL, so your calculator numbers don't change.</div>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box orange">
           <strong>Loading Phase:</strong> 20 mcg — titrate up gradually<br>
@@ -1081,9 +1113,11 @@
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr><td class="hi" rowspan="3" style="vertical-align:top;border-bottom:none">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr><td><span style="opacity:.7">or</span> 0.6% acetic acid alone</td><td>1 mL</td></tr>
+          <tr><td><span style="opacity:.7">or</span> 0.6% acetic acid<br><span style="opacity:.8">then BAC water</span></td><td>0.5 mL AA, then 0.5 mL BAC</td></tr>
         </tbody></table>
-        <div class="tip-box">BAC water works, or you can use acetic acid (0.6%) — either 1 mL of acetic acid, or 0.5 mL acetic acid + 0.5 mL BAC water (add the acetic acid first). Cagrilintide's commercial formulation is acidic, so it holds up well in acetic acid. If you use acetic acid, keep Cagrilintide in its own vial — don't combine it with 3-PA or TZ-2.</div>
+        <div class="tip-box">Cagrilintide's commercial formulation is acidic, so it holds up well in acetic acid. When using acid, add it first — and keep Cagrilintide in its own vial; don't combine it with 3-PA or TZ-2.</div>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box orange">
           <strong>Week 1–4:</strong> 0.25 mg<br>
@@ -1149,10 +1183,10 @@
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">10mg</td><td>BAC water<br><span style="opacity:.8">0.6% AA first if cloudy</span></td><td>1 mL</td></tr>
+          <tr><td class="hi" rowspan="2" style="vertical-align:top;border-bottom:none">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr><td><span style="opacity:.7">or</span> 0.6% acetic acid<br><span style="opacity:.8">then BAC water</span></td><td>0.2 mL AA, then 0.8 mL BAC</td></tr>
         </tbody></table>
-        <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #00e5ff;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3">BAC water is usually enough. If the vial turns cloudy or will not clear, add 0.1–0.3 mL of 0.6% acetic acid first, let it go fully clear, then add the BAC water.</div>
-        <div class="tip-box">AOD-9604 can gel or turn cloudy in BAC water alone. If it does, reconstitute with 0.2 mL acetic acid (0.6%) + 0.8 mL BAC water instead — add the acetic acid first and swirl until clear, then add the BAC water. Total is still 1 mL, so your calculator numbers don't change.</div>
+        <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #00e5ff;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3">BAC water is usually enough. AOD-9604 can go cloudy or gel in BAC water alone — if that has happened to you, use the acid option: add the acetic acid first, swirl until fully clear, then add the BAC water. Total is still 1 mL, so your calculator numbers don't change.</div>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box orange">
           <strong>Loading Phase:</strong> 250 mcg — titrate up gradually<br>
@@ -1806,9 +1840,10 @@
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">10mg</td><td>BAC water<br><span style="opacity:.8">0.6% AA first if cloudy</span></td><td>1 mL</td></tr>
+          <tr><td class="hi" rowspan="2" style="vertical-align:top;border-bottom:none">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr><td><span style="opacity:.7">or</span> 0.6% acetic acid<br><span style="opacity:.8">then BAC water</span></td><td>a few drops AA, then BAC to 1 mL</td></tr>
         </tbody></table>
-        <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #00e5ff;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3">BAC water is usually enough. If the vial will not clear, add a few drops of 0.6% acetic acid first and let it go fully clear before the BAC water.</div>
+        <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #00e5ff;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3">BAC water is usually enough. If it has gone cloudy for you in BAC water before, use the acid option: a few drops of 0.6% acetic acid first, let it go fully clear, then BAC water to 1 mL.</div>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box gold">
           <strong>Loading Phase:</strong> Start at 250 mcg and titrate up gradually over 1–2 weeks<br>
@@ -1836,9 +1871,10 @@
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">10mg</td><td>BAC water<br><span style="opacity:.8">0.6% AA first if cloudy</span></td><td>1 mL</td></tr>
+          <tr><td class="hi" rowspan="2" style="vertical-align:top;border-bottom:none">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr><td><span style="opacity:.7">or</span> 0.6% acetic acid<br><span style="opacity:.8">then BAC water</span></td><td>a few drops AA, then BAC to 1 mL</td></tr>
         </tbody></table>
-        <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #00e5ff;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3">BAC water is usually enough. If the vial will not clear, add a few drops of 0.6% acetic acid first and let it go fully clear before the BAC water.</div>
+        <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #00e5ff;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3">BAC water is usually enough. If it has gone cloudy for you in BAC water before, use the acid option: a few drops of 0.6% acetic acid first, let it go fully clear, then BAC water to 1 mL.</div>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box gold">
           <strong>Loading Phase:</strong> Start at 250 mcg daily and titrate up gradually over 1–2 weeks<br>
@@ -1894,9 +1930,10 @@
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">10mg</td><td>0.6% acetic acid<br><span style="opacity:.8">then BAC water</span></td><td>0.5 mL AA, then 1.5 mL BAC</td></tr>
+          <tr><td class="hi" rowspan="2" style="vertical-align:top;border-bottom:none">10mg</td><td>0.6% acetic acid<br><span style="opacity:.8">then BAC water</span></td><td>0.5 mL AA, then 1.5 mL BAC</td></tr>
+          <tr><td><span style="opacity:.7">or</span> BAC water alone</td><td>2 mL</td></tr>
         </tbody></table>
-        <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #00e5ff;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3"><strong style="color:#00e5ff">Acid-first:</strong> add the acetic acid alone and swirl gently until the solution is <strong>completely clear</strong>. Only then add the BAC water. Once BAC water hits powder that has not fully dissolved, the cloudiness locks in and more BAC will not clear it — only more acid, gentle warmth and time will. This compound will not fully dissolve in BAC water alone.</div>
+        <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #00e5ff;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3"><strong style="color:#00e5ff">Acid-first:</strong> add the acetic acid alone and swirl gently until the solution is <strong>completely clear</strong>. Only then add the BAC water. Once BAC water hits powder that has not fully dissolved, the cloudiness locks in and more BAC will not clear it — only more acid, gentle warmth and time will. BAC water alone also works for many vials, but at this strength some will not fully dissolve — acid first avoids that.</div>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box pink">
           <strong>Optimal Dose:</strong> 200 mcg<br>
@@ -1935,5 +1972,67 @@
   </div>
 
 </div>
+<script>
+(function () {
+  var input = document.getElementById('ptzSearch');
+  var wrap = document.querySelector('.body-wrap');
+  if (!input || !wrap) return;
+  var clearBtn = document.getElementById('ptzSearchClear');
+  var countEl = document.getElementById('ptzSearchCount');
+  var none = document.getElementById('ptzNoResults');
+  var anchor = document.getElementById('ptzSearchAnchor');
+  var bar = document.querySelector('.ptz-search');
+  function norm(t) { return (t || '').toLowerCase().replace(/[^a-z0-9]+/g, ''); }
+
+  var items = [], cats = [], subs = [], cat = null, sub = null;
+  Array.prototype.forEach.call(wrap.children, function (el) {
+    if (el === anchor || el === bar || el === none) return;
+    var c = el.classList;
+    if (c.contains('category-header')) { cat = { el: el, n: 0 }; cats.push(cat); sub = null; return; }
+    if (c.contains('subcat-title')) { sub = { el: el, n: 0 }; subs.push(sub); return; }
+    if (c.contains('peptide-block')) {
+      var name = el.querySelector('.peptide-name'), aka = el.querySelector('.peptide-aka');
+      var hay = norm((name ? name.textContent : '') + ' ' + (aka ? aka.textContent : ''));
+      items.push({ el: el, hay: hay, cat: cat, sub: sub });
+      return;
+    }
+    items.push({ el: el, other: true });
+  });
+
+  function run() {
+    var raw = input.value.trim();
+    var toks = raw.toLowerCase().split(/\s+/).map(norm).filter(Boolean);
+    var active = toks.length > 0, shown = 0;
+    clearBtn.hidden = !input.value;
+    cats.forEach(function (c) { c.n = 0; });
+    subs.forEach(function (c) { c.n = 0; });
+    items.forEach(function (it) {
+      if (it.other) { it.el.classList.toggle('ptz-hide', active); return; }
+      var ok = !active || toks.every(function (t) { return it.hay.indexOf(t) !== -1; });
+      it.el.classList.toggle('ptz-hide', !ok);
+      if (ok) { shown++; if (it.cat) it.cat.n++; if (it.sub) it.sub.n++; }
+    });
+    cats.concat(subs).forEach(function (c) { c.el.classList.toggle('ptz-hide', active && !c.n); });
+    none.hidden = !(active && shown === 0);
+    none.querySelector('span').textContent = raw;
+    countEl.textContent = active ? (shown + (shown === 1 ? ' match' : ' matches')) : '';
+  }
+
+  input.addEventListener('input', function () {
+    run();
+    var top = anchor.getBoundingClientRect().top + window.pageYOffset;
+    if (window.pageYOffset > top) window.scrollTo(0, top);
+  });
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { input.value = ''; run(); }
+    if (e.key === 'Enter') { input.blur(); }
+  });
+  clearBtn.addEventListener('click', function () { input.value = ''; run(); input.focus(); });
+  document.querySelectorAll('.jump-links a').forEach(function (a) {
+    a.addEventListener('click', function () { if (input.value) { input.value = ''; run(); } });
+  });
+  run();
+})();
+</script>
 </body>
 </html>
