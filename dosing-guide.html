@@ -48,6 +48,13 @@
   .vial-tag.green { background: #22c55e15; border-color: #22c55e44; color: #22c55e; }
   .vial-tag.orange { background: #f9731615; border-color: #f9731644; color: #f97316; }
   .vial-tag.pink { background: #ec489915; border-color: #ec489944; color: #ec4899; }
+  .peptide-title-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  button.size-btn { font-family: inherit; cursor: pointer; line-height: inherit; opacity: .6; filter: saturate(.7); transition: opacity .15s, box-shadow .15s; -webkit-tap-highlight-color: transparent; }
+  button.size-btn:hover { opacity: .8; }
+  button.size-btn[aria-pressed="true"] { opacity: 1; filter: none; font-weight: 700; box-shadow: 0 0 0 1px currentColor inset; }
+  button.size-btn:focus-visible { outline: 2px solid #00e5ff; outline-offset: 2px; }
+  .ptz-var-hide { display: none !important; }
+  .recon-table tr.ptz-last td { border-bottom: none; }
   .vial-tag.ptz-flag { background: #f59e0b22; border-color: #f59e0b; color: #fbbf24; font-weight: 700; }
   .peptide-body { padding: 12px 18px 16px; }
   .section-title { font-size: 9px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #7b7baa; margin: 14px 0 6px; }
@@ -270,7 +277,7 @@
     </div>
 
     <!-- Wolverine Blend -->
-    <div class="peptide-block recovery">
+    <div class="peptide-block has-variants recovery">
       <div class="peptide-header">
         <div>
           <div class="peptide-name">Wolverine</div>
@@ -278,15 +285,15 @@
         </div>
       </div>
       <div class="vial-tags">
-        <span class="vial-tag">10mg vial</span>
-        <span class="vial-tag">20mg vial</span>
+        <button type="button" class="vial-tag size-btn" data-size="10mg" aria-pressed="true" title="Show info for the 10mg vial">10mg vial</button>
+        <button type="button" class="vial-tag size-btn" data-size="20mg" aria-pressed="false" title="Show info for the 20mg vial">20mg vial</button>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
-          <tr><td class="hi">20mg</td><td>BAC water</td><td>2 mL</td></tr>
+          <tr data-size="10mg"><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr data-size="20mg"><td class="hi">20mg</td><td>BAC water</td><td>2 mL</td></tr>
         </tbody></table>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box">
@@ -295,14 +302,14 @@
           <strong>Inject:</strong> Subcutaneous<br>
           <strong>Timing:</strong> Morning or evening<br>
           <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
-          <strong>Vials per Cycle:</strong> ≈9 × 10mg or 5 × 20mg (max cycle)<br>
+          <strong>Vials per Cycle:</strong> <span data-size="10mg">≈9 vials</span><span data-size="20mg">≈5 vials</span> (max cycle)<br>
           <strong>Tip:</strong> BPC-157 and TB-500 in one vial — the classic repair stack without double the pins
         </div>
       </div>
     </div>
 
     <!-- GHK-Cu -->
-    <div class="peptide-block recovery">
+    <div class="peptide-block has-variants recovery">
       <div class="peptide-header">
         <div>
           <div class="peptide-name">GHK-Cu</div>
@@ -310,15 +317,15 @@
         </div>
       </div>
       <div class="vial-tags">
-        <span class="vial-tag green">50mg vial</span>
-        <span class="vial-tag green">100mg vial</span>
+        <button type="button" class="vial-tag green size-btn" data-size="50mg" aria-pressed="true" title="Show info for the 50mg vial">50mg vial</button>
+        <button type="button" class="vial-tag green size-btn" data-size="100mg" aria-pressed="false" title="Show info for the 100mg vial">100mg vial</button>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">50mg</td><td>BAC water</td><td>1.5 mL</td></tr>
-          <tr><td class="hi">100mg</td><td>BAC water</td><td>3 mL</td></tr>
+          <tr data-size="50mg"><td class="hi">50mg</td><td>BAC water</td><td>1.5 mL</td></tr>
+          <tr data-size="100mg"><td class="hi">100mg</td><td>BAC water</td><td>3 mL</td></tr>
         </tbody></table>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box green">
@@ -327,14 +334,14 @@
           <strong>Inject:</strong> Subcutaneous<br>
           <strong>Timing:</strong> Evening preferred<br>
           <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
-          <strong>Vials per Cycle:</strong> ≈4 × 50mg or 2 × 100mg (max cycle)<br>
+          <strong>Vials per Cycle:</strong> <span data-size="50mg">≈4 vials</span><span data-size="100mg">≈2 vials</span> (max cycle)<br>
           <strong>Tip:</strong> Pairs great with BPC-157 and TB-500 for skin and tissue regeneration
         </div>
       </div>
     </div>
 
     <!-- AHK-Cu -->
-    <div class="peptide-block recovery">
+    <div class="peptide-block has-variants recovery">
       <div class="peptide-header">
         <div>
           <div class="peptide-name">AHK-Cu</div>
@@ -342,15 +349,15 @@
         </div>
       </div>
       <div class="vial-tags">
-        <span class="vial-tag green">50mg vial</span>
-        <span class="vial-tag green">100mg vial</span>
+        <button type="button" class="vial-tag green size-btn" data-size="50mg" aria-pressed="true" title="Show info for the 50mg vial">50mg vial</button>
+        <button type="button" class="vial-tag green size-btn" data-size="100mg" aria-pressed="false" title="Show info for the 100mg vial">100mg vial</button>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">50mg</td><td>BAC water</td><td>1.5 mL</td></tr>
-          <tr><td class="hi">100mg</td><td>BAC water</td><td>3 mL</td></tr>
+          <tr data-size="50mg"><td class="hi">50mg</td><td>BAC water</td><td>1.5 mL</td></tr>
+          <tr data-size="100mg"><td class="hi">100mg</td><td>BAC water</td><td>3 mL</td></tr>
         </tbody></table>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box green">
@@ -359,7 +366,7 @@
           <strong>Inject:</strong> Subcutaneous<br>
           <strong>Timing:</strong> Morning or evening<br>
           <strong>Cycle:</strong> 8–16 weeks on / 4 weeks off<br>
-          <strong>Vials per Cycle:</strong> ≈5 × 50mg or 3 × 100mg (max cycle)
+          <strong>Vials per Cycle:</strong> <span data-size="50mg">≈5 vials</span><span data-size="100mg">≈3 vials</span> (max cycle)
         </div>
       </div>
     </div>
@@ -424,24 +431,23 @@
     </div>
 
     <!-- ARA-290 -->
-    <div class="peptide-block recovery">
+    <div class="peptide-block has-variants recovery">
       <div class="peptide-header">
         <div>
-          <div class="peptide-name">ARA-290</div>
+          <div class="peptide-title-row"><div class="peptide-name">ARA-290</div><span class="vial-tag ptz-flag">⚠ pH sensitive</span></div>
           <div class="peptide-aka">Cibinetide · EPO-Derived Peptide · Nerve Repair · Anti-Inflammatory</div>
         </div>
       </div>
       <div class="vial-tags">
-        <span class="vial-tag">16mg vial</span>
-        <span class="vial-tag">30mg vial</span>
-        <span class="vial-tag ptz-flag">⚠ pH sensitive</span>
+        <button type="button" class="vial-tag size-btn" data-size="16mg" aria-pressed="true" title="Show info for the 16mg vial">16mg vial</button>
+        <button type="button" class="vial-tag size-btn" data-size="30mg" aria-pressed="false" title="Show info for the 30mg vial">30mg vial</button>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">16mg</td><td>BAC water<br><span style="opacity:.8">or PBS pH 7.4</span></td><td>2 mL</td></tr>
-          <tr><td class="hi">30mg</td><td>BAC water<br><span style="opacity:.8">or PBS pH 7.4</span></td><td>3 mL</td></tr>
+          <tr data-size="16mg"><td class="hi">16mg</td><td>BAC water<br><span style="opacity:.8">or PBS pH 7.4</span></td><td>2 mL</td></tr>
+          <tr data-size="30mg"><td class="hi">30mg</td><td>BAC water<br><span style="opacity:.8">or PBS pH 7.4</span></td><td>3 mL</td></tr>
         </tbody></table>
         <div style="margin:10px 0 0;padding:10px 12px;border-left:3px solid #00e5ff;background:rgba(255,255,255,.04);border-radius:4px;font-size:12.5px;line-height:1.55;color:#cfd8e3">BAC water works for most vials. Some lots turn gel-like in BAC water — if yours does, use PBS pH 7.4 (phosphate-buffered saline) at the same amount. PBS holds the pH at 7.4, which keeps ARA-290 dissolved.</div>
         <div class="section-title">Step 2 — Schedule</div>
@@ -451,7 +457,7 @@
           <strong>Frequency:</strong> Daily<br>
           <strong>Inject:</strong> Subcutaneous<br>
           <strong>Cycle:</strong> 12 weeks on / 4 weeks off<br>
-          <strong>Vials per Cycle:</strong> ≈21 × 16mg or 12 × 30mg (max cycle)
+          <strong>Vials per Cycle:</strong> <span data-size="16mg">≈21 vials</span><span data-size="30mg">≈12 vials</span> (max cycle)
         </div>
       </div>
     </div>
@@ -614,7 +620,7 @@
     </div>
 
     <!-- GHK-Cu Serum -->
-    <div class="peptide-block recovery">
+    <div class="peptide-block has-variants recovery">
       <div class="peptide-header">
         <div>
           <div class="peptide-name">GHK-Cu Serum</div>
@@ -622,8 +628,8 @@
         </div>
       </div>
       <div class="vial-tags">
-        <span class="vial-tag">10mL dropper</span>
-        <span class="vial-tag">30mL dropper</span>
+        <button type="button" class="vial-tag size-btn" data-size="10mL" aria-pressed="true" title="Show info for the 10mL dropper">10mL dropper</button>
+        <button type="button" class="vial-tag size-btn" data-size="30mL" aria-pressed="false" title="Show info for the 30mL dropper">30mL dropper</button>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Prep</div>
@@ -634,7 +640,7 @@
           <strong>Frequency:</strong> Twice daily — AM &amp; PM<br>
           <strong>Apply:</strong> Warm between fingertips and press into face &amp; neck — let absorb 1–2 min<br>
           <strong>Cycle:</strong> Ongoing daily use<br>
-          <strong>Bottle Lasts:</strong> 10mL ≈ 3–4 weeks · 30mL ≈ 2½–3 months (AM + PM)<br>
+          <strong>Bottle Lasts:</strong> <span data-size="10mL">≈ 3–4 weeks</span><span data-size="30mL">≈ 2½–3 months</span> (AM + PM)<br>
           <strong>Tip:</strong> Apply before moisturizer. Keep vitamin C and strong acids (AHA/BHA) to the opposite time of day
         </div>
       </div>
@@ -860,7 +866,7 @@
     </div>
 
     <!-- Tesamorelin -->
-    <div class="peptide-block gh">
+    <div class="peptide-block has-variants gh">
       <div class="peptide-header">
         <div>
           <div class="peptide-name">Tesamorelin</div>
@@ -868,15 +874,15 @@
         </div>
       </div>
       <div class="vial-tags">
-        <span class="vial-tag orange">10mg vial</span>
-        <span class="vial-tag orange">20mg vial</span>
+        <button type="button" class="vial-tag orange size-btn" data-size="10mg" aria-pressed="true" title="Show info for the 10mg vial">10mg vial</button>
+        <button type="button" class="vial-tag orange size-btn" data-size="20mg" aria-pressed="false" title="Show info for the 20mg vial">20mg vial</button>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
-          <tr><td class="hi">20mg</td><td>BAC water</td><td>2 mL</td></tr>
+          <tr data-size="10mg"><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr data-size="20mg"><td class="hi">20mg</td><td>BAC water</td><td>2 mL</td></tr>
         </tbody></table>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box orange">
@@ -885,7 +891,7 @@
           <strong>Inject:</strong> Subcutaneous<br>
           <strong>Timing:</strong> Before bed on an empty stomach<br>
           <strong>Cycle:</strong> 12 weeks on / 4 weeks off<br>
-          <strong>Vials per Cycle:</strong> ≈17 × 10mg or 9 × 20mg (max cycle)<br>
+          <strong>Vials per Cycle:</strong> <span data-size="10mg">≈17 vials</span><span data-size="20mg">≈9 vials</span> (max cycle)<br>
           <strong>Tip:</strong> Stack with Ipamorelin for enhanced GH release and body recomposition
         </div>
       </div>
@@ -926,13 +932,12 @@
     <div class="peptide-block gh">
       <div class="peptide-header">
         <div>
-          <div class="peptide-name">IGF-1 LR3</div>
+          <div class="peptide-title-row"><div class="peptide-name">IGF-1 LR3</div><span class="vial-tag ptz-flag">⚠ Hydrophobic</span></div>
           <div class="peptide-aka">Insulin-Like Growth Factor · Muscle Growth · Fat Loss</div>
         </div>
       </div>
       <div class="vial-tags">
         <span class="vial-tag orange">1mg vial</span>
-        <span class="vial-tag ptz-flag">⚠ Hydrophobic</span>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
@@ -997,7 +1002,7 @@
     </div>
 
     <!-- GLP-3 RT (Retatrutide) -->
-    <div class="peptide-block met">
+    <div class="peptide-block has-variants met">
       <div class="peptide-header">
         <div>
           <div class="peptide-name">GLP-3 RT</div>
@@ -1005,19 +1010,19 @@
         </div>
       </div>
       <div class="vial-tags">
-        <span class="vial-tag orange">10mg vial</span>
-        <span class="vial-tag orange">20mg vial</span>
-        <span class="vial-tag orange">30mg vial</span>
-        <span class="vial-tag orange">60mg vial</span>
+        <button type="button" class="vial-tag orange size-btn" data-size="10mg" aria-pressed="true" title="Show info for the 10mg vial">10mg vial</button>
+        <button type="button" class="vial-tag orange size-btn" data-size="20mg" aria-pressed="false" title="Show info for the 20mg vial">20mg vial</button>
+        <button type="button" class="vial-tag orange size-btn" data-size="30mg" aria-pressed="false" title="Show info for the 30mg vial">30mg vial</button>
+        <button type="button" class="vial-tag orange size-btn" data-size="60mg" aria-pressed="false" title="Show info for the 60mg vial">60mg vial</button>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
-          <tr><td class="hi">20mg</td><td>BAC water</td><td>2 mL</td></tr>
-          <tr><td class="hi">30mg</td><td>BAC water</td><td>3 mL</td></tr>
-          <tr><td class="hi">60mg</td><td>BAC water</td><td>3 mL</td></tr>
+          <tr data-size="10mg"><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr data-size="20mg"><td class="hi">20mg</td><td>BAC water</td><td>2 mL</td></tr>
+          <tr data-size="30mg"><td class="hi">30mg</td><td>BAC water</td><td>3 mL</td></tr>
+          <tr data-size="60mg"><td class="hi">60mg</td><td>BAC water</td><td>3 mL</td></tr>
         </tbody></table>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box orange">
@@ -1033,7 +1038,7 @@
     </div>
 
     <!-- TZ-2 Tirz -->
-    <div class="peptide-block met">
+    <div class="peptide-block has-variants met">
       <div class="peptide-header">
         <div>
           <div class="peptide-name">TZ-2 (Tirz)</div>
@@ -1041,17 +1046,17 @@
         </div>
       </div>
       <div class="vial-tags">
-        <span class="vial-tag orange">10mg vial</span>
-        <span class="vial-tag orange">20mg vial</span>
-        <span class="vial-tag orange">30mg vial</span>
+        <button type="button" class="vial-tag orange size-btn" data-size="10mg" aria-pressed="true" title="Show info for the 10mg vial">10mg vial</button>
+        <button type="button" class="vial-tag orange size-btn" data-size="20mg" aria-pressed="false" title="Show info for the 20mg vial">20mg vial</button>
+        <button type="button" class="vial-tag orange size-btn" data-size="30mg" aria-pressed="false" title="Show info for the 30mg vial">30mg vial</button>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
-          <tr><td class="hi">20mg</td><td>BAC water</td><td>2 mL</td></tr>
-          <tr><td class="hi">30mg</td><td>BAC water</td><td>3 mL</td></tr>
+          <tr data-size="10mg"><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr data-size="20mg"><td class="hi">20mg</td><td>BAC water</td><td>2 mL</td></tr>
+          <tr data-size="30mg"><td class="hi">30mg</td><td>BAC water</td><td>3 mL</td></tr>
         </tbody></table>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box orange">
@@ -1069,7 +1074,7 @@
 
 
     <!-- Eloralintide -->
-    <div class="peptide-block met">
+    <div class="peptide-block has-variants met">
       <div class="peptide-header">
         <div>
           <div class="peptide-name">Eloralintide</div>
@@ -1077,15 +1082,15 @@
         </div>
       </div>
       <div class="vial-tags">
-        <span class="vial-tag orange">5mg vial</span>
-        <span class="vial-tag orange">10mg vial</span>
+        <button type="button" class="vial-tag orange size-btn" data-size="5mg" aria-pressed="true" title="Show info for the 5mg vial">5mg vial</button>
+        <button type="button" class="vial-tag orange size-btn" data-size="10mg" aria-pressed="false" title="Show info for the 10mg vial">10mg vial</button>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">5mg</td><td>BAC water</td><td>0.5 mL</td></tr>
-          <tr><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr data-size="5mg"><td class="hi">5mg</td><td>BAC water</td><td>0.5 mL</td></tr>
+          <tr data-size="10mg"><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
         </tbody></table>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box orange">
@@ -1138,7 +1143,7 @@
 
 
     <!-- 5-Amino -->
-    <div class="peptide-block met">
+    <div class="peptide-block has-variants met">
       <div class="peptide-header">
         <div>
           <div class="peptide-name">5-Amino</div>
@@ -1146,15 +1151,15 @@
         </div>
       </div>
       <div class="vial-tags">
-        <span class="vial-tag orange">10mg vial</span>
-        <span class="vial-tag orange">50mg vial</span>
+        <button type="button" class="vial-tag orange size-btn" data-size="10mg" aria-pressed="true" title="Show info for the 10mg vial">10mg vial</button>
+        <button type="button" class="vial-tag orange size-btn" data-size="50mg" aria-pressed="false" title="Show info for the 50mg vial">50mg vial</button>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
-          <tr><td class="hi">50mg</td><td>BAC water</td><td>3 mL</td></tr>
+          <tr data-size="10mg"><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr data-size="50mg"><td class="hi">50mg</td><td>BAC water</td><td>3 mL</td></tr>
         </tbody></table>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box orange">
@@ -1164,7 +1169,7 @@
           <strong>Inject:</strong> Subcutaneous<br>
           <strong>Timing:</strong> Morning — pairs well with MOTS-c and NAD+<br>
           <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
-          <strong>Vials per Cycle:</strong> ≈42 × 10mg or 9 × 50mg (max cycle)
+          <strong>Vials per Cycle:</strong> <span data-size="10mg">≈42 vials</span><span data-size="50mg">≈9 vials</span> (max cycle)
         </div>
       </div>
     </div>
@@ -1175,13 +1180,12 @@
     <div class="peptide-block met">
       <div class="peptide-header">
         <div>
-          <div class="peptide-name">AOD-9604</div>
+          <div class="peptide-title-row"><div class="peptide-name">AOD-9604</div><span class="vial-tag ptz-flag">⚠ Hydrophobic</span></div>
           <div class="peptide-aka">GH Fragment 176-191 Analog · Fat Metabolism · Weight Management</div>
         </div>
       </div>
       <div class="vial-tags">
         <span class="vial-tag orange">10mg vial</span>
-        <span class="vial-tag ptz-flag">⚠ Hydrophobic</span>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
@@ -1335,7 +1339,7 @@
     </div>
 
     <!-- MOTS-c -->
-    <div class="peptide-block neuro">
+    <div class="peptide-block has-variants neuro">
       <div class="peptide-header">
         <div>
           <div class="peptide-name">MOTS-c</div>
@@ -1343,15 +1347,15 @@
         </div>
       </div>
       <div class="vial-tags">
-        <span class="vial-tag orange">10mg vial</span>
-        <span class="vial-tag orange">40mg vial</span>
+        <button type="button" class="vial-tag orange size-btn" data-size="10mg" aria-pressed="true" title="Show info for the 10mg vial">10mg vial</button>
+        <button type="button" class="vial-tag orange size-btn" data-size="40mg" aria-pressed="false" title="Show info for the 40mg vial">40mg vial</button>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
         <table class="recon-table">
           <tbody><tr><th>Vial Size</th><th>Solvent</th><th>Amount</th></tr>
-          <tr><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
-          <tr><td class="hi">40mg</td><td>BAC water</td><td>3 mL</td></tr>
+          <tr data-size="10mg"><td class="hi">10mg</td><td>BAC water</td><td>1 mL</td></tr>
+          <tr data-size="40mg"><td class="hi">40mg</td><td>BAC water</td><td>3 mL</td></tr>
         </tbody></table>
         <div class="section-title">Step 2 — Schedule</div>
         <div class="schedule-box orange">
@@ -1360,7 +1364,7 @@
           <strong>Inject:</strong> Subcutaneous<br>
           <strong>Timing:</strong> Morning before exercise for best metabolic effect<br>
           <strong>Cycle:</strong> 8–12 weeks on / 4 weeks off<br>
-          <strong>Vials per Cycle:</strong> ≈42 × 10mg or 11 × 40mg (max cycle)
+          <strong>Vials per Cycle:</strong> <span data-size="10mg">≈42 vials</span><span data-size="40mg">≈11 vials</span> (max cycle)
         </div>
       </div>
     </div>
@@ -1833,13 +1837,12 @@
     <div class="peptide-block mt2grad">
       <div class="peptide-header">
         <div>
-          <div class="peptide-name">MT1</div>
+          <div class="peptide-title-row"><div class="peptide-name">MT1</div><span class="vial-tag ptz-flag">⚠ Hydrophobic</span></div>
           <div class="peptide-aka">Melanotan 1 · Melanocyte Stimulator · Tanning</div>
         </div>
       </div>
       <div class="vial-tags">
         <span class="vial-tag gold">10mg vial</span>
-        <span class="vial-tag ptz-flag">⚠ Hydrophobic</span>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
@@ -1865,13 +1868,12 @@
     <div class="peptide-block mt2grad">
       <div class="peptide-header">
         <div>
-          <div class="peptide-name">MT2</div>
+          <div class="peptide-title-row"><div class="peptide-name">MT2</div><span class="vial-tag ptz-flag">⚠ Hydrophobic</span></div>
           <div class="peptide-aka">Melanotan 2 · Melanocyte Stimulator · Tanning + Libido</div>
         </div>
       </div>
       <div class="vial-tags">
         <span class="vial-tag gold">10mg vial</span>
-        <span class="vial-tag ptz-flag">⚠ Hydrophobic</span>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
@@ -1925,13 +1927,12 @@
     <div class="peptide-block libido">
       <div class="peptide-header">
         <div>
-          <div class="peptide-name">Kisspeptin</div>
+          <div class="peptide-title-row"><div class="peptide-name">Kisspeptin</div><span class="vial-tag ptz-flag">⚠ Hydrophobic</span></div>
           <div class="peptide-aka">GnRH Stimulator · Testosterone · Hormonal Balance · Fertility</div>
         </div>
       </div>
       <div class="vial-tags">
         <span class="vial-tag pink">10mg vial</span>
-        <span class="vial-tag ptz-flag">⚠ Hydrophobic</span>
       </div>
       <div class="peptide-body">
         <div class="section-title">Step 1 — Solvent</div>
@@ -2040,6 +2041,27 @@
     a.addEventListener('click', function () { if (input.value) { input.value = ''; run(); } });
   });
   run();
+})();
+</script>
+<script>
+(function () {
+  document.querySelectorAll('.peptide-block.has-variants').forEach(function (block) {
+    var btns = block.querySelectorAll('.size-btn');
+    if (!btns.length) return;
+    function select(size) {
+      btns.forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-size') === size ? 'true' : 'false'); });
+      block.querySelectorAll('[data-size]:not(.size-btn)').forEach(function (el) {
+        el.classList.toggle('ptz-var-hide', el.getAttribute('data-size') !== size);
+      });
+      block.querySelectorAll('.recon-table').forEach(function (t) {
+        var rows = t.querySelectorAll('tr'), lastVis = null;
+        rows.forEach(function (r) { r.classList.remove('ptz-last'); if (!r.classList.contains('ptz-var-hide')) lastVis = r; });
+        if (lastVis) lastVis.classList.add('ptz-last');
+      });
+    }
+    btns.forEach(function (b) { b.addEventListener('click', function () { select(b.getAttribute('data-size')); }); });
+    select(btns[0].getAttribute('data-size'));
+  });
 })();
 </script>
 </body>
