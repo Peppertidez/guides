@@ -6,7 +6,8 @@
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#04070f">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌶️</text></svg>">
-<title>Peptide Mixing Guide — Peppertidez</title>
+<title>Peptide Mixing Guide — Same Syringe — Peppertidez</title>
+<meta name="description" content="Which peptides can and can't be mixed together in the same syringe.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
@@ -208,26 +209,26 @@
 
   <div class="titlecard">
     <h1>Peptide Mixing Guide</h1>
-    <p>Check what your peptides can and can't be combined with.</p>
+    <p>Check which peptides can and can't be mixed together <strong style="color:var(--ink)">in the same syringe</strong>.</p>
   </div>
 
   <div class="panel">
     <div class="modes">
       <button class="mode-btn on" data-mode="lookup">Look up one</button>
-      <button class="mode-btn" data-mode="stack">My stack</button>
+      <button class="mode-btn" data-mode="stack">One syringe</button>
       <button class="mode-btn" data-mode="never">Never mix</button>
     </div>
-    <p class="modehint" id="modehint">Tap a peptide to see what it mixes with.</p>
+    <p class="modehint" id="modehint">Tap a peptide to see what it can share a syringe with.</p>
     <div id="picker"></div>
   </div>
 
   <div id="result">
-    <div class="empty" id="emptyState">Choose a peptide above to see its mixing guide.</div>
+    <div class="empty" id="emptyState">Choose a peptide above to see what it can share a syringe with.</div>
   </div>
 
   <div class="legend">
-    <div class="leg"><span class="badge y">&#10003;</span> Can mix</div>
-    <div class="leg"><span class="badge n">&#10005;</span> Can't mix</div>
+    <div class="leg"><span class="badge y">&#10003;</span> Can mix in the same syringe</div>
+    <div class="leg"><span class="badge n">&#10005;</span> Use a separate syringe</div>
   </div>
 
   <div class="gridtoggle">
@@ -241,7 +242,7 @@
   </div>
 
   <div class="disclaimer">
-    <strong>Please read:</strong> This chart is charted from anecdotal information and is provided for
+    <strong>Please read:</strong> This chart only covers which peptides can be mixed together in the same syringe. It does not cover whether peptides can be stacked or run together. This chart is charted from anecdotal information and is provided for
     convenience only. It is <strong>not</strong> medical advice or a recommendation. Blank cells mean no
     information was listed. Researchers should verify and validate all information prior to any use.
   </div>
@@ -276,7 +277,7 @@ let sel=[];
 const pickerEl=document.getElementById('picker');
 const resultEl=document.getElementById('result');
 const modehintEl=document.getElementById('modehint');
-const HINTS={lookup:"Tap a peptide to see what it mixes with.",compare:"Tap two peptides to see if they can be combined.",stack:"Tap everything in your stack — we'll flag any bad pairs.",never:"These always go in their own syringe — never mix them with anything."};
+const HINTS={lookup:"Tap a peptide to see what it can share a syringe with.",compare:"Tap two peptides to see if they can share a syringe.",stack:"Tap everything you want in one syringe — we'll flag any pairs that can't share it.",never:"These always go in their own syringe — never mix them in a syringe with anything."};
 
 // Build categorized picker
 CATEGORIES.forEach(cat=>{
@@ -325,7 +326,7 @@ function highlight(){ allChips.forEach(c=>c.classList.toggle('on', sel.includes(
 function render(){
   pickerEl.style.display = mode==='never' ? 'none' : '';
   if(mode==='never') return renderNever();
-  if(mode==='lookup') return sel.length?renderLookup(sel[0]):emptyMsg("Choose a peptide above to see its mixing guide.");
+  if(mode==='lookup') return sel.length?renderLookup(sel[0]):emptyMsg("Choose a peptide above to see what it can share a syringe with.");
   if(mode==='compare') return renderCompare();
   return renderStack();
 }
@@ -343,13 +344,13 @@ function wireItems(){ resultEl.querySelectorAll('.iname').forEach(el=>el.onclick
 function renderLookup(i){
   const row=GRID[i]; const yes=[],no=[]; let none=0;
   for(let j=0;j<LABELS.length;j++){ if(j===i) continue; const b=bucketOf(row[j]); if(b==='yes')yes.push(j); else if(b==='no')no.push(j); else none++; }
-  let h='<div class="sel"><h2>'+esc(LABELS[i])+'</h2><span class="hint">what it can mix with</span>'+
+  let h='<div class="sel"><h2>'+esc(LABELS[i])+'</h2><span class="hint">what it can share a syringe with</span>'+
     '</div>';
   if(yes.length) h+='<div class="group yes"><div class="ghead"><span class="badge y">&#10003;</span>'+
-    '<span class="gtitle">Can mix</span><span class="gcount">'+yes.length+'</span></div><div class="items">'+yes.map(itemChip).join('')+'</div></div>';
+    '<span class="gtitle">Can mix in the same syringe</span><span class="gcount">'+yes.length+'</span></div><div class="items">'+yes.map(itemChip).join('')+'</div></div>';
   if(no.length) h+='<div class="group no"><div class="ghead"><span class="badge n">&#10005;</span>'+
-    '<span class="gtitle">Can\u2019t mix</span><span class="gcount">'+no.length+'</span></div><div class="items">'+no.map(itemChip).join('')+'</div></div>';
-  if(!yes.length&&!no.length) h+='<div class="empty">No mixing information listed for this one.</div>';
+    '<span class="gtitle">Use a separate syringe</span><span class="gcount">'+no.length+'</span></div><div class="items">'+no.map(itemChip).join('')+'</div></div>';
+  if(!yes.length&&!no.length) h+='<div class="empty">No same-syringe information listed for this one.</div>';
   if(none) h+='<div class="nodata">'+none+' other peptide'+(none>1?'s':'')+' had no information listed.</div>';
   resultEl.innerHTML=h; wireItems();
 }
@@ -359,8 +360,8 @@ function renderCompare(){
   const [a,b]=sel; const st=pairStatus(a,b);
   const cls=st==='yes'?'y':st==='no'?'n':'u';
   const icon=st==='yes'?'&#10003;':st==='no'?'&#10005;':'?';
-  const big=st==='yes'?'Can mix':st==='no'?"Can't mix":'No info listed';
-  const sub=st==='yes'?'These have been combined together.':st==='no'?'These are listed as not to be mixed.':'No mixing info was listed for this pair.';
+  const big=st==='yes'?'Same syringe OK':st==='no'?'Use separate syringes':'No info listed';
+  const sub=st==='yes'?'These can be mixed in the same syringe.':st==='no'?'These are listed as not to be mixed in the same syringe.':'No same-syringe info was listed for this pair.';
   let h='<div class="sel"><h2>'+esc(LABELS[a])+' + '+esc(LABELS[b])+'</h2></div>';
   h+='<div class="verdict '+cls+'"><div class="vbadge">'+icon+'</div><div class="big">'+big+'</div><div class="sub">'+sub+'</div></div>';
   
@@ -368,7 +369,7 @@ function renderCompare(){
 }
 
 function renderStack(){
-  if(sel.length<2) return emptyMsg(sel.length===1?"Add at least one more peptide to check your stack.":"Add two or more peptides to check your stack.");
+  if(sel.length<2) return emptyMsg(sel.length===1?"Add at least one more peptide to check your syringe.":"Add two or more peptides to check if they can share one syringe.");
   let bar='<div class="stackbar">'+sel.map(i=>'<span class="stackchip"><span>'+esc(LABELS[i])+'</span>'+
     ''+
     '<span class="rm" data-i="'+i+'">&times;</span></span>').join('')+'</div>';
@@ -379,11 +380,11 @@ function renderStack(){
     if(st==='no') bad.push(label); else if(st==='yes') ok.push(label); else unk.push(label);
   }
   const total=bad.length+unk.length+ok.length;
-  let sum='<div class="summary">'+sel.length+' peptides · '+total+' combinations — '+
-    (bad.length? bad.length+' to avoid':'no conflicts')+(unk.length?', '+unk.length+' no info':'')+'.</div>';
-  let h='<div class="sel"><h2>Your stack</h2></div>'+bar+sum;
-  if(bad.length) h+='<div class="group no"><div class="ghead"><span class="badge n">&#10005;</span><span class="gtitle">Don\u2019t mix</span><span class="gcount">'+bad.length+'</span></div><div class="pairs">'+bad.map(p=>'<span class="pair">'+esc(p)+'</span>').join('')+'</div></div>';
-  if(ok.length) h+='<div class="group yes"><div class="ghead"><span class="badge y">&#10003;</span><span class="gtitle">Fine to mix</span><span class="gcount">'+ok.length+'</span></div><div class="pairs">'+ok.map(p=>'<span class="pair">'+esc(p)+'</span>').join('')+'</div></div>';
+  let sum='<div class="summary">'+sel.length+' peptides · '+total+' pairs — '+
+    (bad.length? bad.length+' can\u2019t share a syringe':'all can share one syringe')+(unk.length?', '+unk.length+' no info':'')+'.</div>';
+  let h='<div class="sel"><h2>One syringe</h2></div>'+bar+sum;
+  if(bad.length) h+='<div class="group no"><div class="ghead"><span class="badge n">&#10005;</span><span class="gtitle">Can\u2019t share a syringe</span><span class="gcount">'+bad.length+'</span></div><div class="pairs">'+bad.map(p=>'<span class="pair">'+esc(p)+'</span>').join('')+'</div></div>';
+  if(ok.length) h+='<div class="group yes"><div class="ghead"><span class="badge y">&#10003;</span><span class="gtitle">Can share a syringe</span><span class="gcount">'+ok.length+'</span></div><div class="pairs">'+ok.map(p=>'<span class="pair">'+esc(p)+'</span>').join('')+'</div></div>';
   if(unk.length) h+='<div class="group" style="border-color:var(--border);background:linear-gradient(160deg,#0e1626,#0a1120)"><div class="ghead"><span class="badge u">?</span><span class="gtitle" style="color:var(--body)">No info listed</span><span class="gcount">'+unk.length+'</span></div><div class="pairs">'+unk.map(p=>'<span class="pair">'+esc(p)+'</span>').join('')+'</div></div>';
   resultEl.innerHTML=h;
   resultEl.querySelectorAll('.rm').forEach(el=>el.onclick=()=>removeFromStack(+el.dataset.i));
@@ -410,7 +411,7 @@ function renderNever(){
   const rest=list.filter(i=>!seen.has(i));
   if(rest.length) body+='<div class="items">'+rest.map(itemChip).join('')+'</div>';
   resultEl.innerHTML='<div class="sel"><h2>Never mix</h2><span class="hint">always use their own syringe</span></div>'+
-    '<div class="group no"><div class="ghead"><span class="badge n">&#10005;</span><span class="gtitle">Never mix with anything</span><span class="gcount">'+list.length+'</span></div><div class="nlist">'+body+'</div></div>';
+    '<div class="group no"><div class="ghead"><span class="badge n">&#10005;</span><span class="gtitle">Never mix in a syringe with anything</span><span class="gcount">'+list.length+'</span></div><div class="nlist">'+body+'</div></div>';
   wireItems();
 }
 
